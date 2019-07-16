@@ -5,9 +5,6 @@
         Welcome to {{ title }}!
     </h1>
 
+    <p>{{ venuesCount }}</p>
 
-    <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng">
-            <agm-info-window>IPI</agm-info-window>
-        </agm-marker>
-    </agm-map>
+    <p *ngFor="let venue of venues">{{ venue.name }}</p>
