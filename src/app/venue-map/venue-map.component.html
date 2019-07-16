@@ -1,0 +1,6 @@
+<h1> Map </h1>
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker *ngFor="let v of venues" [latitude] = "v.coordinates.latitude" [longitude] = "v.coordinates.longitude">
+          <agm-info-window> {{ v.name }} </agm-info-window>
+      </agm-marker>
+  </agm-map>

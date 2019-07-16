@@ -5,10 +5,12 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { YelpService } from './yelp.service';
+import { VenueMapComponent } from './venue-map/venue-map.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VenueMapComponent
   ],
   imports: [
   	BrowserModule,
