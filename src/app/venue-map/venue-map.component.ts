@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { YelpService } from '../yelp.service';
 import { YelpVenue } from '../yelp-venue';
 import { YelpResponse } from '../yelp-response';
@@ -11,8 +11,8 @@ import { YelpResponse } from '../yelp-response';
 export class VenueMapComponent implements OnInit {
 
   title = 'mesi-front';
-  lat: number = 45.770508;
-  lng: number = 4.805194;
+  @Input() lat: number ;
+  @Input() lng: number ;
 
   venues: Array<YelpVenue>;
   venuesCount: number = 0;
