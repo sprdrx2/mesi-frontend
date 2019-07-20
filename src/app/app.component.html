@@ -1,10 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
 
-    <h1>
-        Welcome to {{ title }} !
-    </h1>
+    <img src="assets/welcome.jpg" class="img-responsive" width="100%" />
 
-<app-venue-map [lat]="45.770508" [lng]="4.1805194">
-    
-</app-venue-map>
+    <app-venue-map [lat]="45.770508" [lng]="4.1805194" [venues]="venues">
+
+    </app-venue-map>
+
+    <input id="barreRecherche" [(ngModel)]="inputLocation" placeholder="Entrez une addresse ou un lieu de sortie" />
+    <button id="btnRecherche" (click)="inputRecherche()">Rechercher</button>
+
+</div>

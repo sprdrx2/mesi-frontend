@@ -6,17 +6,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { YelpService } from './yelp.service';
 import { VenueMapComponent } from './venue-map/venue-map.component';
+import { VenueListComponent } from './venue-list/venue-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    VenueMapComponent
+    VenueMapComponent,
+    VenueListComponent
   ],
   imports: [
-  	BrowserModule,
-	AgmCoreModule.forRoot({ apiKey: 'AIzaSyDFlhYfOtWnmS542HA5XvTUh2GV5f6mxIM' }),
-	FormsModule,
-	HttpClientModule
+  BrowserModule,
+  AgmCoreModule.forRoot({ apiKey: 'AIzaSyDFlhYfOtWnmS542HA5XvTUh2GV5f6mxIM' }),
+  FormsModule,
+  HttpClientModule
   ],
   providers: [YelpService],
   bootstrap: [AppComponent]

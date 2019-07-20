@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { YelpService } from '../yelp.service';
 import { YelpVenue } from '../yelp-venue';
-import { YelpResponse } from '../yelp-response';
 
 @Component({
   selector: 'app-venue-map',
@@ -14,19 +12,9 @@ export class VenueMapComponent implements OnInit {
   @Input() lat: number ;
   @Input() lng: number ;
 
-  venues: Array<YelpVenue>;
-  venuesCount: number = 0;
-  constructor(private yelpService: YelpService) { };
+  @Input() venues: Array<YelpVenue>;
 
    ngOnInit() {
-    this.yelpService.getVenues().subscribe(
-     (response: YelpResponse) => { 
-       console.log(response); 
-       this.venues = response.businesses;
-       this.venuesCount = this.venues.length;
-      }
-    );
-  
    }
 
 }
