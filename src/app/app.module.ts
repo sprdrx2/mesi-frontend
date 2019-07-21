@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { YelpService } from './yelp.service';
 import { VenueMapComponent } from './venue-map/venue-map.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
+import { VenueMesiService } from './venue-mesi.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { VenueListComponent } from './venue-list/venue-list.component';
   FormsModule,
   HttpClientModule
   ],
-  providers: [YelpService],
+  providers: [YelpService, VenueMesiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

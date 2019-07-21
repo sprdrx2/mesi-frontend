@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { YelpService } from './yelp.service';
 import { YelpVenue } from './yelp-venue';
 import { YelpResponse } from './yelp-response';
+import { VenueMesiService } from './venue-mesi.service';
+import { VenueMesi } from './venue-mesi';
 
 @Component({
   selector: 'app-root',
@@ -10,26 +12,31 @@ import { YelpResponse } from './yelp-response';
 })
 
 export class AppComponent {
-  constructor(private yelpService: YelpService) {}
+  constructor(private yelpService: YelpService, private venueMesiService: VenueMesiService) {}
 
-  venues: Array<YelpVenue>;
-  private venuesCount: number;
-  inputLoction: String;
+  yelpVenues: Array<YelpVenue>;
+  mesiVenues: Array<VenueMesi>;
+  inputLocation: String;
 
   ngOnInit() {
     this.recherche('LYON');
   }
 
   inputRecherche() {
-    this.recherche(this.inputLoction);
+    this.recherche(this.inputLocation);
   }
 
   recherche(location: String) {
     this.yelpService.getVenues(location).subscribe(
       (response: YelpResponse) => {
         console.log(response);
-        this.venues = response.businesses;
-        this.venuesCount = this.venues.length;
+        this.yelpVenues = response.businesses;
+        this.venueMesiService.compare(this.yelpVenues).subscribe(
+          (response: Array<VenueMesi>) => {
+            console.log(response);
+            this.mesiVenues = response;
+          }
+        );
        }
      );
   }

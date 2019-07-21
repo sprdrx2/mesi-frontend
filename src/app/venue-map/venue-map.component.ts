@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { YelpVenue } from '../yelp-venue';
+import { VenueMesi } from '../venue-mesi';
 
 @Component({
   selector: 'app-venue-map',
@@ -12,7 +12,7 @@ export class VenueMapComponent implements OnInit {
   @Input() lat: number ;
   @Input() lng: number ;
 
-  @Input() venues: Array<YelpVenue>;
+  @Input() venues: Array<VenueMesi>;
 
    ngOnInit() {
    }

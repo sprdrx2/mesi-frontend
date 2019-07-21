@@ -1,7 +1,7 @@
 import { YelpVenue } from './yelp-venue';
 
 export class VenueMesi {
- id: number;
+ knownStatus: boolean;
  yelp_id: string;
  espacePoussette: boolean;
  tableLanger: boolean;
