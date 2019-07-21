@@ -8,12 +8,14 @@ import { YelpService } from './yelp.service';
 import { VenueMapComponent } from './venue-map/venue-map.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
 import { VenueMesiService } from './venue-mesi.service';
+import { MesiVenueComponent } from './mesi-venue/mesi-venue.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VenueMapComponent,
-    VenueListComponent
+    VenueListComponent,
+    MesiVenueComponent
   ],
   imports: [
   BrowserModule,

@@ -1,0 +1,11 @@
+<h4>{{ v.yelpVenue.name }}</h4>
+
+<h5>{{ v.yelpVenue.location.address1 }} {{ v.yelpVenue.location.address2 }} {{ v.yelpVenue.location.address3 }}</h5>
+
+<ul>
+    <li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
+    <li *ngIf="v.tableLanger">Table à langer disponible.</li>
+    <li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
+    <li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
+    <li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
+</ul>

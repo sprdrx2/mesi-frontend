@@ -10,4 +10,6 @@
     <input id="barreRecherche" [(ngModel)]="inputLocation" placeholder="Entrez une addresse ou un lieu de sortie" />
     <button id="btnRecherche" (click)="inputRecherche()">Rechercher</button>
 
+    <app-venue-list [venues]="mesiVenues"></app-venue-list>
+
 </div>
