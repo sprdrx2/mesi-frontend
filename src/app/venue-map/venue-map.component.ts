@@ -6,7 +6,7 @@ import { VenueMesi } from '../venue-mesi';
   templateUrl: './venue-map.component.html',
   styleUrls: ['./venue-map.component.css']
 })
-export class VenueMapComponent implements OnInit, FitBoundsAccessor {
+export class VenueMapComponent implements OnInit {
 
   title = 'mesi-front';
   @Input() lat: number ;

@@ -9,4 +9,5 @@ export class VenueMesi {
  menuEnfant: boolean;
  espaceJeu: boolean;
  yelpVenue: YelpVenue;
+
 }

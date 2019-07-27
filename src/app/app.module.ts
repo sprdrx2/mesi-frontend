@@ -9,13 +9,15 @@ import { VenueMapComponent } from './venue-map/venue-map.component';
 import { VenueListComponent } from './venue-list/venue-list.component';
 import { VenueMesiService } from './venue-mesi.service';
 import { MesiVenueComponent } from './mesi-venue/mesi-venue.component';
+import { VenueMesiMarkerComponent } from './venue-mesi-marker/venue-mesi-marker.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VenueMapComponent,
     VenueListComponent,
-    MesiVenueComponent
+    MesiVenueComponent,
+    VenueMesiMarkerComponent
   ],
   imports: [
   BrowserModule,

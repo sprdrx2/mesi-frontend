@@ -1,0 +1,7 @@
+
+<agm-marker [latitude]="v.yelpVenue.coordinates.latitude" [longitude]="v.yelpVenue.coordinates.longitude" [agmFitBounds]="true" [iconUrl]="vIcon">
+        <agm-info-window>
+	    <app-mesi-venue [v]="v"></app-mesi-venue>
+        </agm-info-window>
+    </agm-marker>
+
