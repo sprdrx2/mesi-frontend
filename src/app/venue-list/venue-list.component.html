@@ -1,4 +1,5 @@
+<h4 *ngIf="venues?.length > 0">Détails</h4>
+
 <div *ngFor="let v of venues">
-    <h4>Détails</h4>
     <app-mesi-venue *ngIf="v.knownStatus" [v]="v"></app-mesi-venue>
 </div>

@@ -1,7 +1,9 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomLevel">
-    <agm-marker *ngFor="let v of venues" [latitude]="v.yelpVenue.coordinates.latitude" [longitude]="v.yelpVenue.coordinates.longitude">
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomLevel" [fitBounds]="venues?.length > 0">
+
+    	<agm-marker *ngFor="let v of venues" [latitude]="v.yelpVenue.coordinates.latitude" [longitude]="v.yelpVenue.coordinates.longitude" [agmFitBounds]="true">
         <agm-info-window>
             <app-mesi-venue [v]="v"></app-mesi-venue>
         </agm-info-window>
     </agm-marker>
+
 </agm-map>
