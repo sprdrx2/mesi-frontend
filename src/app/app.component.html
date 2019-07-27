@@ -1,15 +1,31 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
 
     <img src="assets/welcome.jpg" class="img-responsive" width="100%" />
 
-    <app-venue-map [lat]="45.770508" [lng]="4.1805194" [venues]="mesiVenues">
-
+    <app-venue-map [lat]="welcomeLatitude" [lng]="welcomeLongitude" [zoomLevel]="welcomeZoomLevel" [venues]="mesiVenues">
     </app-venue-map>
 
-    <input id="barreRecherche" [(ngModel)]="inputLocation" placeholder="Entrez une addresse ou un lieu de sortie" />
-    <button id="btnRecherche" (click)="inputRecherche()">Rechercher</button>
+    <div id="recherche" *ngIf="isComputing == false; else ComputingGif">
+        <label>Espace poussette ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox">
+        <label>Espace jeu ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox">
+        <label>Menu enfant ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasMenuEnfant" type="checkbox">
+        <label>Table à langer ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox">
+        <label>Table à langer accessible aux hommes ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox">
 
-    <app-venue-list [venues]="mesiVenues"></app-venue-list>
+        <br />
+        <input id="barreRecherche" [(ngModel)]="inputLocation" placeholder="Entrez une addresse ou un lieu de sortie" />
+        <button id="btnRecherche" (click)="inputRecherche()">Rechercher</button>
+    </div>
+    <ng-template #ComputingGif><img src="assets/computing.gif" alt="computing..." /></ng-template>
+
+    <app-venue-list *ngIf="requestHasKnownVenues; else NoResult" [venues]="mesiVenues"></app-venue-list>
+    <ng-template #NoResult>
+        <p id="no-result">Oups ... aucun résultat. Pas très bébé-friendly par ici ...</p>
+    </ng-template>
 
 </div>

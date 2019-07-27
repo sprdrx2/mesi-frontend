@@ -15,5 +15,5 @@ export class VenueMesiService {
   compare(yelpVenues: Array<YelpVenue>) {
     return this.httpClient.post(this.venueMesiApiAddress, yelpVenues);
   }
-  
+
 }

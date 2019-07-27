@@ -1,9 +1,0 @@
-- fonction dans MesiVenueService pour filtrer les resultats selon le knownStatus et selon les items.
-
-- filtrage de l'affichage des resultats dans la map et la liste.
-
-- formulaire ajout info
-
-- migration vers OSM
-
-- integration bootstrap

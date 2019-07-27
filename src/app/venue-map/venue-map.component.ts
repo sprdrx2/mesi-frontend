@@ -11,6 +11,7 @@ export class VenueMapComponent implements OnInit {
   title = 'mesi-front';
   @Input() lat: number ;
   @Input() lng: number ;
+  @Input() zoomLevel: number ;
 
   @Input() venues: Array<VenueMesi>;
 

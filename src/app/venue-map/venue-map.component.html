@@ -1,4 +1,4 @@
-<agm-map [latitude]="lat" [longitude]="lng">
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomLevel">
     <agm-marker *ngFor="let v of venues" [latitude]="v.yelpVenue.coordinates.latitude" [longitude]="v.yelpVenue.coordinates.longitude">
         <agm-info-window>
             <app-mesi-venue [v]="v"></app-mesi-venue>
