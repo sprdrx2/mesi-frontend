@@ -15,4 +15,19 @@ export class MesiVenueComponent implements OnInit {
   ngOnInit() {
   }
 
+  vStatus() {
+	if(!this.v.knownStatus) {  return "Unknown"; }
+	else {
+		if( 
+			this.v.espacePoussette ||
+			this.v.tableLanger ||
+			this.v.tableLangerMen ||
+			this.v.menuEnfant ||
+			this.v.espaceJeu
+		) { return "BBFriendly"; } 
+		else { return "BBNotFriendly"; }
+	}
+ }
+
+
 }
