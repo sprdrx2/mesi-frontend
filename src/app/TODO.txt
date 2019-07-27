@@ -1,0 +1,7 @@
+
+- integration bootstrap & fontawesome
+- formulaire ajout info
+
+[ truc des 20 resultats ] => piger le bordel sur la requete yelp
+[ geoloc ]
+[ autocompletion addresse yelp ou google ] => librairie ? toutes payantes, compliqué, garder une journée mesi
