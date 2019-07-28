@@ -4,19 +4,24 @@
 	   <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-Friendly Finder</span></a>
           <form class="form-inline">
 		  <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" />
-		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0 d-none d-md-inline" type="submit" (click)="inputRecherche()">Chercher!</button>
 			</form>
 
+			<div id="filters">
 	        <label>Espace poussette ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" />
+	        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" [ngModelOptions]="{standalone: true}" />
 	        <label>Espace jeu ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" />
+	        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" [ngModelOptions]="{standalone: true}" />
 	        <label>Menu enfant ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasMenuEnfant" type="checkbox" />
+	        <input [(ngModel)]="mesiVenuesFilter.hasMenuEnfant" type="checkbox" [ngModelOptions]="{standalone: true}" />
 	        <label>Table à langer ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox" />
+	        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox" [ngModelOptions]="{standalone: true}" />
 	        <label>Table à langer accessible aux hommes ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" />
+	        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" [ngModelOptions]="{standalone: true}" />
+			</div>
+
+		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0 d-inline d-md-none" type="submit" (click)="inputRecherche()">Chercher!</button>
+			
    </nav>
 
 	<div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">
@@ -31,7 +36,7 @@
     </app-venue-map>
 
 
-    <img *ngIf="isComputing" src="assets/computing.gif" alt="computing..." />
+    <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
 
     <app-venue-list *ngIf="requestHasKnownVenues; else NoResult" [venues]="mesiVenues"></app-venue-list>
     <ng-template #NoResult>
