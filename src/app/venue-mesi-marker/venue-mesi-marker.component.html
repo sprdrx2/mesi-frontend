@@ -1,7 +1,9 @@
 
 <agm-marker [latitude]="v.yelpVenue.coordinates.latitude" [longitude]="v.yelpVenue.coordinates.longitude" [agmFitBounds]="true" [iconUrl]="vIcon">
-        <agm-info-window>
+        <agm-snazzy-info-window [closeWhenOthersOpen]="true">
+		<ng-template><!-- obligatoire sinon pas marche -->
 	    <app-mesi-venue [v]="v"></app-mesi-venue>
-        </agm-info-window>
+	    </ng-template>
+        </agm-snazzy-info-window>
     </agm-marker>
 
