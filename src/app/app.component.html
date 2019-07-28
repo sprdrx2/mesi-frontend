@@ -1,8 +1,8 @@
 <div style="text-align:center" class="container">
 
-    <img src="assets/welcome.jpg" class="img-responsive" width="100%" />
+    <img *ngIf="welcomeScreen" src="assets/welcome.jpg" class="img-responsive" width="100%" />
 
-    <app-venue-map [lat]="welcomeLatitude" [lng]="welcomeLongitude" [zoomLevel]="welcomeZoomLevel" [venues]="mesiVenues">
+    <app-venue-map *ngIf="!welcomeScreen" [lat]="welcomeLatitude" [lng]="welcomeLongitude" [zoomLevel]="welcomeZoomLevel" [venues]="mesiVenues">
     </app-venue-map>
 
     <div id="recherche" *ngIf="isComputing == false; else ComputingGif">

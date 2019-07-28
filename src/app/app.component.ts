@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   welcomeLatitude: number;
   welcomeLongitude: number;
   welcomeZoomLevel: number;
+  welcomeScreen: boolean;
 
   ngOnInit() {
      this.mesiVenuesFilter = new VenueMesiFilter;
@@ -37,9 +38,11 @@ export class AppComponent implements OnInit {
      this.welcomeLatitude = 45.770508;
      this.welcomeLongitude = 4.1805194;
      this.welcomeZoomLevel = 4;
+     this.welcomeScreen = true;
    }
 
-  inputRecherche() {
+   inputRecherche() {
+    this.welcomeScreen = false;
     this.requestHasKnownVenues = true; // pour empêcher l'affichage du msg "pas de resultats"
     this.isComputing = true;
     this.mesiVenues = [];
