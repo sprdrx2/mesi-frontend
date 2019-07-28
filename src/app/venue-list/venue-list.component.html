@@ -1,5 +1,9 @@
-<h4 *ngIf="venues?.length > 0">Endroits BB-Friendly</h4>
+	<h4 *ngIf="venues?.length > 0">Endroits BB-Friendly</h4>
 
-<div *ngFor="let v of venues">
-    <app-mesi-venue *ngIf="v.knownStatus && v.bbFriendly" [v]="v"></app-mesi-venue>
-</div>
+	<div class="row">
+
+	<ng-template ngFor let-v [ngForOf]="venues" let-i="index" let-odd="odd" [ngForTrackBy]="trackById">
+		<app-mesi-venue *ngIf="v.knownStatus && v.bbFriendly" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
+	</ng-template>
+
+	</div>
