@@ -1,6 +1,6 @@
 <h4>{{ v.yelpVenue.name }}</h4>
 
-<div *ngIf="v.knownStatus; else StatusUnkwnown">
+<div *ngIf="v.knownStatus; else StatusUnknown">
     	<ul *ngIf="v.bbFriendly; else bbNotFriendly">
     		<li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
     		<li *ngIf="v.tableLanger">Table à langer disponible.</li>
