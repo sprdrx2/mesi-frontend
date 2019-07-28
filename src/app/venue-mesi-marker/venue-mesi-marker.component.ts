@@ -25,16 +25,14 @@ export class VenueMesiMarkerComponent implements OnInit {
   }
 
   vStatus() {
-	if(!this.v.knownStatus) {  return "Unknown"; }
-	else {
-		if( 
-			this.v.espacePoussette ||
-			this.v.tableLanger ||
-			this.v.tableLangerMen ||
-			this.v.menuEnfant ||
-			this.v.espaceJeu
-		) { return "BBFriendly"; } 
-		else { return "BBNotFriendly"; }
+	if(this.v.knownStatus) {
+		if (this.v.bbFriendly) {
+			return "BBFriendly";
+		} else {
+			return "BBNotFriendly";
+		}
+	} else {
+		return "Unknown";
 	}
  }
 

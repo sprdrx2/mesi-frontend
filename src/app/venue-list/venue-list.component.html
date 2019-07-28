@@ -1,5 +1,5 @@
-<h4 *ngIf="venues?.length > 0">Détails</h4>
+<h4 *ngIf="venues?.length > 0">Endroits BB-Friendly</h4>
 
 <div *ngFor="let v of venues">
-    <app-mesi-venue *ngIf="v.knownStatus" [v]="v"></app-mesi-venue>
+    <app-mesi-venue *ngIf="v.knownStatus && v.bbFriendly" [v]="v"></app-mesi-venue>
 </div>

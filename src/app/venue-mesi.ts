@@ -2,6 +2,7 @@ import { YelpVenue } from './yelp-venue';
 
 export class VenueMesi {
  knownStatus: boolean;
+ bbFriendly: boolean; 
  yelp_id: string;
  espacePoussette: boolean;
  tableLanger: boolean;

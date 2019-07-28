@@ -1,19 +1,22 @@
 <h4>{{ v.yelpVenue.name }}</h4>
 
-<ul *ngIf="vStatus() == 'BBFriendly'; else BBNotFriendlyOrStatusUnkwnown">
-    <li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
-    <li *ngIf="v.tableLanger">Table à langer disponible.</li>
-    <li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
-    <li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
-    <li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
-</ul>
-
-<ng-template #BBNotFriendlyOrStatusUnkwnown>
-	<p *ngIf="vStatus() == 'BBUnFriendly'; else StatusUnknown">Ce lieu ne propose rien pour les parents.</p>
-	<ng-template #StatusUnknown>
-		<p>Nous n'avons pas d'information concernant cet endroit.</p>
+<div *ngIf="v.knownStatus; else StatusUnkwnown">
+    	<ul *ngIf="v.bbFriendly; else bbNotFriendly">
+    		<li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
+    		<li *ngIf="v.tableLanger">Table à langer disponible.</li>
+    		<li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
+    		<li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
+    		<li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
+	</ul>
+	<ng-template #bbNotFriendly>
+		<p>Ce lieu ne propose pour les enfants ni les parents.</p>
 	</ng-template>
-i</ng-template>
+</div>
+
+<ng-template #StatusUnknown>
+	<p>Nous n'avons pas d'information concernant cet endroit.</p>
+</ng-template>
+
 
 <img src="{{ v.yelpVenue.image_url }}" />
 <p>{{ v.yelpVenue.location.address1 }} {{ v.yelpVenue.location.address2 }} {{ v.yelpVenue.location.address3 }}</p>
