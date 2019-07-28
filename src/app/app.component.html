@@ -1,6 +1,14 @@
 <div style="text-align:center" class="container">
 
-    <img *ngIf="welcomeScreen" src="assets/welcome.jpg" class="img-responsive" width="100%" />
+   <nav class="navbar navbar-dark sticky-top bg-primary">
+	   <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt="">BaBy-Friendly Finder</a>
+          <form class="form-inline">
+		  <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+          </form>
+   </nav>
+
+   <img *ngIf="welcomeScreen" src="assets/welcome.jpg" class="img-fluid img-thumbnail"/>
 
     <app-venue-map *ngIf="!welcomeScreen" [lat]="welcomeLatitude" [lng]="welcomeLongitude" [zoomLevel]="welcomeZoomLevel" [venues]="mesiVenues">
     </app-venue-map>
@@ -18,8 +26,6 @@
         <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox">
 
         <br />
-        <input id="barreRecherche" [(ngModel)]="inputLocation" placeholder="Entrez une addresse ou un lieu de sortie" />
-        <button id="btnRecherche" (click)="inputRecherche()">Rechercher</button>
     </div>
     <ng-template #ComputingGif><img src="assets/computing.gif" alt="computing..." /></ng-template>
 
