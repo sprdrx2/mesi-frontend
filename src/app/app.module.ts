@@ -10,6 +10,7 @@ import { VenueListComponent } from './venue-list/venue-list.component';
 import { VenueMesiService } from './venue-mesi.service';
 import { MesiVenueComponent } from './mesi-venue/mesi-venue.component';
 import { VenueMesiMarkerComponent } from './venue-mesi-marker/venue-mesi-marker.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { VenueMesiMarkerComponent } from './venue-mesi-marker/venue-mesi-marker.
   BrowserModule,
   AgmCoreModule.forRoot({ apiKey: 'AIzaSyDFlhYfOtWnmS542HA5XvTUh2GV5f6mxIM' }),
   FormsModule,
-  HttpClientModule
+  HttpClientModule,
+  NgbModule
   ],
   providers: [YelpService, VenueMesiService],
   bootstrap: [AppComponent]
