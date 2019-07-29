@@ -8,16 +8,16 @@
 			</form>
 
 			<div id="filters">
-	        <label>Espace poussette ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Espace jeu ?</label>
+	        <label>Espace poussette ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Menu enfant ?</label>
+	        <label>Espace jeu ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasMenuEnfant" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Table à langer ?</label>
+	        <label>Menu enfant ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Table à langer accessible aux hommes ?</label>
+	        <label>Table à langer ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" [ngModelOptions]="{standalone: true}" />
+	        <label>Table à langer accessible aux hommes ?</label>
 			</div>
 
 		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0 d-inline d-md-none" type="submit" (click)="inputRecherche()">Chercher!</button>
