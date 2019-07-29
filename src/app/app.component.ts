@@ -57,20 +57,9 @@ export class AppComponent implements OnInit {
     this.previousInput = this.inputLocation;
   }
 
-  recherche(location: String) {
-    this.yelpService.getVenues(location).subscribe(
-      (response: YelpResponse) => {
-        console.log('Yelp: '); console.log(response);
-        this.yelpVenues = response.businesses;
-        this.venueMesiService.compare(this.yelpVenues).subscribe(
-          (response: Array<VenueMesi>) => {
-            console.log('Backend: '); console.log(response);
-            this.mesiVenuesUnfiltered = response;
-            this.afterRecherche();
-          }
-        );
-       }
-     );
+  async recherche(location: String) {
+    this.mesiVenuesUnfiltered = await this.venueMesiService.getVenues(location);
+    this.afterRecherche();
   }
 
   afterRecherche() {
