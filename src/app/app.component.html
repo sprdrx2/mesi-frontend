@@ -1,7 +1,7 @@
 <div style="text-align:center" class="container-fluid">
 
    <nav class="navbar navbar-dark sticky-top bg-dark">
-	   <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-Friendly Finder</span></a>
+	   <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
           <form class="form-inline">
 		  <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" />
 		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0 d-none d-md-inline" type="submit" (click)="inputRecherche()">Chercher!</button>
@@ -26,7 +26,7 @@
 
 	<div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">
 	  <div class="container">
-	    <h3 class="display-7">Baby-Friendly Bistrots</h3>
+	    <h3 class="display-7">BaBy-MeSi</h3>
 		<img src="assets/welcome.jpg" class="img-fluid img-thumbnail"/>		
 	    <p class="lead"><small><i>Because you don't leave baby in a corner.</i></small></p>
 	  </div>
