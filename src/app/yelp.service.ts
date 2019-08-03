@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { YelpResponse } from './yelp-response';
+import { YelpVenue } from './yelp-venue';
 
 @Injectable({
   providedIn: 'root'
