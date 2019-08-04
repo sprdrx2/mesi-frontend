@@ -10,7 +10,7 @@ import { VenueMesiService } from '../venue-mesi.service';
 export class MesiVenueFormComponent implements OnInit {
 
   @Input() mesiVenue: VenueMesi;
-  private posting = false;
+  private isPosting = false;
 
   constructor(private venueMesiService: VenueMesiService) { }
 
@@ -18,11 +18,11 @@ export class MesiVenueFormComponent implements OnInit {
   }
 
   async submit() {
-    this.posting = true;
+    this.isPosting = true;
     console.log('Soumission: ');
     console.log(this.mesiVenue);
     this.mesiVenue = await this.venueMesiService.createOrUpdateVenue(this.mesiVenue);
-    this.posting = false;
+    this.isPosting = false;
   }
 
 }

@@ -19,14 +19,14 @@ export class VenueMesiService {
 
 
   async compare(yelpVenues: Array<YelpVenue>) {
-	  await this.httpClient.post(this.venueMesiApiCompareAddress, yelpVenues).toPromise().then((data) => this.mesiVenues = data);
-	  console.log('Backend:'); console.log(this.mesiVenues);
-	  return this.mesiVenues;
+     await this.httpClient.post(this.venueMesiApiCompareAddress, yelpVenues).toPromise().then((data) => this.mesiVenues = data);
+    console.log('Backend:'); console.log(this.mesiVenues);
+    return this.mesiVenues;
   }
 
   async getVenues(location: String) {
-  	const yelpVenues: Array<YelpVenue> = await this.yelpVenueService.getVenues(location);
-	  return this.compare(yelpVenues);
+    const yelpVenues: Array<YelpVenue> = await this.yelpVenueService.getVenues(location);
+    return this.compare(yelpVenues);
   }
 
   async createOrUpdateVenue(venue: VenueMesi) {

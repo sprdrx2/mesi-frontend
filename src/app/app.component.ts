@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   displayUnknownStatus: boolean;
   displayBBFriendly: boolean;
   mesiBackendResponse: MesiBackendResponse;
+  recensementMode: boolean;
 
   ngOnInit() {
      this.mesiVenuesFilter = new VenueMesiFilter;
@@ -84,10 +85,21 @@ export class AppComponent implements OnInit {
       console.log('Filtered: '); console.log(this.mesiVenuesBBFriendlyFiltered);
   }
 
-  modeRecensement() {
+  modeRecensementOn() {
+    this.isComputing = true;
+    this.recensementMode = true;
     this.displayBBFriendly = false;
-    this.displayBBNotFriendly = false;
+    this.displayBBNotFriendly = true;
     this.displayUnknownStatus = true;
+    this.inputRecherche();
+  }
+
+  modeRecensementOff() {
+    this.isComputing = true;
+    this.recensementMode = false;
+    this.displayBBFriendly = true;
+    this.displayBBNotFriendly = false;
+    this.displayUnknownStatus = false;
     this.inputRecherche();
   }
 }

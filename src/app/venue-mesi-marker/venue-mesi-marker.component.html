@@ -1,9 +1,10 @@
 
-<agm-marker [latitude]="v.yelpVenue.coordinates.latitude" [longitude]="v.yelpVenue.coordinates.longitude" [agmFitBounds]="true" [iconUrl]="vIcon">
-        <agm-snazzy-info-window [closeWhenOthersOpen]="true">
-		<ng-template><!-- obligatoire sinon pas marche -->
+<agm-marker [latitude]="v.yelpVenue.coordinates.latitude" [longitude]="v.yelpVenue.coordinates.longitude" [agmFitBounds]="true" [iconUrl]="vIcon"  [title]="v.yelpVenue.name">
+    <agm-snazzy-info-window [closeWhenOthersOpen]="true">
+		 <ng-template><!-- obligatoire sinon pas marche -->
 	    <app-mesi-venue [v]="v"></app-mesi-venue>
-	    </ng-template>
-        </agm-snazzy-info-window>
-    </agm-marker>
+	   </ng-template>
+    </agm-snazzy-info-window>
+</agm-marker>
+
 

@@ -9,7 +9,7 @@
 				<li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
 				<li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
       </ul>
-      <button *ngIf="!displayForm" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
+      <button *ngIf="v.bbFriendly && !displayForm" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
       <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
       </app-mesi-venue-form>
 

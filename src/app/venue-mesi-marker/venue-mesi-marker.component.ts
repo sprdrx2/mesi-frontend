@@ -10,7 +10,7 @@ export class VenueMesiMarkerComponent implements OnInit {
   @Input() v: VenueMesi;
   vIcon;
 
-  constructor() { 
+  constructor() {
 
   }
 
@@ -37,5 +37,4 @@ export class VenueMesiMarkerComponent implements OnInit {
  }
 
 
- 
 }

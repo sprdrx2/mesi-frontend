@@ -2,17 +2,16 @@
 
    <nav class="navbar navbar-dark sticky-top bg-dark">
 	   <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
-          <form class="form-inline">
+      <form class="form-inline">
 		  <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" />
-		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0 d-none d-md-inline" type="submit" (click)="inputRecherche()">Chercher!</button>
-			</form>
+        <span class="d-none d-md-inline">
+        <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+        <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
+        <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
+        </span>
+      </form>
 
-			<div id="filters">
-          <input [(ngModel)]="displayBBNotFriendly" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Afficher les lieux non BB-Friendly ?</label>
-          <input [(ngModel)]="displayUnknownStatus" type="checkbox" [ngModelOptions]="{standalone: true}" />
-          <label>Afficher les lieux sans information ?</label>
-          <br />
+			<form id="filters" class="d-none d-md-inline">
 	        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" [ngModelOptions]="{standalone: true}" />
 	        <label>Espace poussette ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" [ngModelOptions]="{standalone: true}" />
@@ -23,11 +22,13 @@
 	        <label>Table à langer ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" [ngModelOptions]="{standalone: true}" />
           <label>Table à langer accessible aux hommes ?</label><br />
-          <button *ngIf="!welcomeScreen && !isComputing" class="btn btn-secondary" (click)="modeRecensement()">Aidez-nous à recenser ces environs!</button>
+      </form>
 
-			</div>
-
-		    <button *ngIf="!isComputing" class="btn btn-secondary my-2 my-sm-0 d-inline d-md-none" type="submit" (click)="inputRecherche()">Chercher!</button>
+        <span class="d-inline d-md-none">
+        <button *ngIf="!isComputing" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+        <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
+        <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
+        </span>
    </nav>
 
 	<div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">
