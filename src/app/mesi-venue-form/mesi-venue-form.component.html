@@ -1,4 +1,4 @@
-<form *ngIf="!isPosting">
+<form *ngIf="!isPosting && !isPosted">
   <div class="form-group">
     <label for="name">Espace Poussette ?</label>
     <input [(ngModel)]="mesiVenue.espacePoussette" type="checkbox" class="form-control" id="hasEspacePoussette" name="hasEspacePoussette" required>
@@ -29,4 +29,5 @@
 </form>
 
 <div class="jumbotron jumbotron-fluid" *ngIf="isPosting"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+<p *ngIf="isPosted">Venues mise à jour :)<br />Actualiser la page.</p>
 

@@ -11,6 +11,7 @@ export class MesiVenueFormComponent implements OnInit {
 
   @Input() mesiVenue: VenueMesi;
   private isPosting = false;
+  private isPosted = false;
 
   constructor(private venueMesiService: VenueMesiService) { }
 
@@ -23,6 +24,7 @@ export class MesiVenueFormComponent implements OnInit {
     console.log(this.mesiVenue);
     this.mesiVenue = await this.venueMesiService.createOrUpdateVenue(this.mesiVenue);
     this.isPosting = false;
+    this.isPosted = true;
   }
 
 }
