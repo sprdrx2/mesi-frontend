@@ -9,6 +9,7 @@ import { VenueMesi } from '../venue-mesi';
 export class MesiVenueComponent implements OnInit {
 
   @Input() v: VenueMesi;
+  @Input() display: boolean;
 
   constructor() { }
 

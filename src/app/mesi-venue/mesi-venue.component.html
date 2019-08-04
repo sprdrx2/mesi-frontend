@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="display">
 	<h4>{{ v.yelpVenue.name }}</h4>
 
 	<div *ngIf="v.knownStatus; else StatusUnknown">

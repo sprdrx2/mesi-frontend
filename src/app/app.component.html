@@ -22,11 +22,12 @@
 	        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox" [ngModelOptions]="{standalone: true}" />
 	        <label>Table à langer ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Table à langer accessible aux hommes ?</label>
+          <label>Table à langer accessible aux hommes ?</label><br />
+          <button *ngIf="!welcomeScreen && !isComputing" class="btn btn-secondary" (click)="modeRecensement()">Aidez-nous à recenser ces environs!</button>
+
 			</div>
 
-		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0 d-inline d-md-none" type="submit" (click)="inputRecherche()">Chercher!</button>
-
+		    <button *ngIf="!isComputing" class="btn btn-secondary my-2 my-sm-0 d-inline d-md-none" type="submit" (click)="inputRecherche()">Chercher!</button>
    </nav>
 
 	<div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">

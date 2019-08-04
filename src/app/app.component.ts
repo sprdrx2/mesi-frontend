@@ -84,5 +84,10 @@ export class AppComponent implements OnInit {
       console.log('Filtered: '); console.log(this.mesiVenuesBBFriendlyFiltered);
   }
 
-
+  modeRecensement() {
+    this.displayBBFriendly = false;
+    this.displayBBNotFriendly = false;
+    this.displayUnknownStatus = true;
+    this.inputRecherche();
+  }
 }

@@ -18,9 +18,7 @@ export class VenueListComponent implements OnInit {
 
   // cf template
   ngOnInit() {
-    if (!(this.displayBBFriendly)) { this.venuesBBFriendly = []; }
-    if (!(this.displayBBNotFriendly)) { this.venuesBBNotFriendly = []; }
-    if (!(this.displayUnknownStatus)) { this.venuesUnknownStatus = []; }
+
   }
 
 }
