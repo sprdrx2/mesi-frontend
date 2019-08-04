@@ -6,7 +6,13 @@ import { VenueMesi } from '../venue-mesi';
   styleUrls: ['./venue-list.component.css']
 })
 export class VenueListComponent implements OnInit {
-  @Input() venues: Array<VenueMesi>;
+  @Input() venuesBBFriendly: Array<VenueMesi>;
+  @Input() venuesBBNotFriendly: Array<VenueMesi>;
+  @Input() venuesUnknownStatus: Array<VenueMesi>;
+
+  @Input() displayBBFriendly: boolean;
+  @Input() displayBBNotFriendly: boolean;
+  @Input() displayUnknownStatus: boolean;
 
   constructor() { }
 

@@ -1,5 +1,6 @@
+import { VenueMesi } from './venue-mesi';
+
 export class VenueMesiFilter {
-    hasKnownStatus: boolean;
     hasEspacePoussette: boolean;
     hasTableLanger: boolean;
     hasTableLangerMen: boolean;
@@ -11,7 +12,6 @@ export class VenueMesiFilter {
     }
 
     reset() {
-        this.hasKnownStatus = false;
         this.hasEspacePoussette = false;
         this.hasTableLanger = false;
         this.hasTableLangerMen = false;
@@ -19,4 +19,42 @@ export class VenueMesiFilter {
         this.hasEspaceJeu = false;
     }
 
+
+    venueComplies(venue: VenueMesi): boolean {
+      if (
+        (this.hasEspaceJeu && !(venue.espaceJeu))
+        || (this.hasEspacePoussette && !(venue.espacePoussette))
+        || (this.hasMenuEnfant && !(venue.menuEnfant))
+        || (this.hasTableLanger && !(venue.tableLanger))
+        || (this.hasTableLangerMen && !(venue.tableLangerMen))
+        ) { return false; }
+      return true;
+    }
+
+    venuesFilter(venues: Array<VenueMesi>): Array<VenueMesi> {
+      if (!this.hasFilters()) { return venues; }
+      let filteredVenues: Array<VenueMesi> = [];
+      for (const venue of venues) {
+        if (this.venueComplies(venue)) {
+            filteredVenues = filteredVenues.concat(venue);
+        }
+      }
+      return filteredVenues;
+    }
+
+    hasFilters(): boolean {
+      if (
+        this.hasEspaceJeu || this.hasEspacePoussette ||
+        this.hasMenuEnfant ||
+        this.hasTableLanger || this.hasTableLangerMen
+        )
+        {
+          return true;
+        }
+        else   {
+           return false;
+        }
+    }
+
 }
+

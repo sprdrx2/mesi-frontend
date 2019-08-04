@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { YelpService } from './yelp.service';
 import { YelpVenue } from './yelp-venue';
-import { YelpResponse } from './yelp-response';
 import { VenueMesiService } from './venue-mesi.service';
 import { VenueMesi } from './venue-mesi';
 import { VenueMesiFilter } from './venue-mesi-filter';
+import { MesiBackendResponse } from './mesi-backend-response';
 
 @Component({
   selector: 'app-root',
@@ -18,36 +18,39 @@ export class AppComponent implements OnInit {
   }
 
   yelpVenues: Array<YelpVenue>;
-  mesiVenues: Array<VenueMesi>;
-  mesiVenuesUnfiltered: Array<VenueMesi>
+  mesiVenuesBBFriendlyFiltered: Array<VenueMesi>;
+  mesiVenuesBBFriendlyUnfiltered: Array<VenueMesi>;
+  mesiVenuesBBNotFriendly: Array<VenueMesi>;
+  mesiVenuesUnknownStatus: Array<VenueMesi>;
   mesiVenuesFilter: VenueMesiFilter;
   inputLocation: String;
-  requestHasKnownVenues: boolean;
   isComputing: boolean;
   previousInput: String;
-  welcomeLatitude: number;
-  welcomeLongitude: number;
-  welcomeZoomLevel: number;
   welcomeScreen: boolean;
+  displayBBNotFriendly: boolean;
+  displayUnknownStatus: boolean;
+  displayBBFriendly: boolean;
+  mesiBackendResponse: MesiBackendResponse;
 
   ngOnInit() {
      this.mesiVenuesFilter = new VenueMesiFilter;
-     this.requestHasKnownVenues = true; // pour empêcher l'affichage du msg "pas de resultats"
      this.isComputing = false;
      this.previousInput = '';
-     this.welcomeLatitude = 45.770508;
-     this.welcomeLongitude = 4.1805194;
-     this.welcomeZoomLevel = 4;
      this.welcomeScreen = true;
+     this.displayBBNotFriendly = false;
+     this.displayUnknownStatus = false;
+     this.displayBBFriendly = true;
    }
+
 
    inputRecherche() {
     this.welcomeScreen = false;
-    this.requestHasKnownVenues = true; // pour empêcher l'affichage du msg "pas de resultats"
     this.isComputing = true;
-    this.mesiVenues = [];
+    this.mesiVenuesBBFriendlyFiltered = [];
     console.log('previousInput: '); console.log(this.previousInput);
     console.log('inputLocation: '); console.log(this.inputLocation);
+    console.log('Display BBNotFriendly: '); console.log(this.displayBBNotFriendly);
+    console.log('Display UnknownStatus: '); console.log(this.displayUnknownStatus);
     if (this.inputLocation === this.previousInput) {
       console.log("recherche identique à la précédentes, pas de requête aux API");
       this.afterRecherche();
@@ -58,48 +61,28 @@ export class AppComponent implements OnInit {
   }
 
   async recherche(location: String) {
-    this.mesiVenuesUnfiltered = await this.venueMesiService.getVenues(location);
+    this.mesiBackendResponse = await this.venueMesiService.getVenues(location);
+    this.mesiVenuesBBFriendlyUnfiltered = this.mesiBackendResponse.bbFriendlyVenues;
+    this.mesiVenuesBBNotFriendly = this.mesiBackendResponse.bbNotFriendlyVenues;
+    this.mesiVenuesUnknownStatus = this.mesiBackendResponse.unknownStatusVenues;
     this.afterRecherche();
   }
 
   afterRecherche() {
-    if(this.filterIsOn()) { this.filterVenues(); } else { this.mesiVenues = this.mesiVenuesUnfiltered; }
-    this.doesRequestHaveKnownVenues();
+    if(this.mesiVenuesFilter.hasFilters()) {
+      this.filterVenues();
+    } else {
+      console.log('Filter is off');
+      this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesBBFriendlyUnfiltered;
+    }
     this.isComputing = false;
   }
 
-  filterIsOn(): boolean {
-    let filterIsOn = (
-     this.mesiVenuesFilter.hasKnownStatus || this.mesiVenuesFilter.hasEspaceJeu
-     || this.mesiVenuesFilter.hasEspacePoussette || this.mesiVenuesFilter.hasMenuEnfant
-     || this.mesiVenuesFilter.hasTableLanger || this.mesiVenuesFilter.hasTableLangerMen
-    );
-    console.log('Filter is on: '); console.log(filterIsOn);
-    console.log('Filter: '); console.log(this.mesiVenuesFilter);
-    return filterIsOn;
+  filterVenues() {
+      console.log('Filter is on:'); console.log(this.mesiVenuesFilter);
+      this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesFilter.venuesFilter(this.mesiVenuesBBFriendlyUnfiltered);
+      console.log('Filtered: '); console.log(this.mesiVenuesBBFriendlyFiltered);
   }
 
-  filterVenues() {    
-      this.mesiVenues = [];
-      for (const mesiVenue of this.mesiVenuesUnfiltered) {
-        if (!(
-          (this.mesiVenuesFilter.hasKnownStatus && !(mesiVenue.knownStatus))
-          || (this.mesiVenuesFilter.hasEspaceJeu && !(mesiVenue.espaceJeu))
-          || (this.mesiVenuesFilter.hasEspacePoussette && !(mesiVenue.espacePoussette))
-          || (this.mesiVenuesFilter.hasMenuEnfant && !(mesiVenue.menuEnfant))
-          || (this.mesiVenuesFilter.hasTableLanger && !(mesiVenue.tableLanger))
-          || (this.mesiVenuesFilter.hasTableLangerMen && !(mesiVenue.tableLangerMen))
-          ))  { this.mesiVenues.push(mesiVenue); }
-      };
-      console.log('Filtered: '); console.log(this.mesiVenues);
-  }
-
-  doesRequestHaveKnownVenues() {
-    let requestHasKnownVenues = false;
-    for (const m of this.mesiVenues) {
-      if (m.knownStatus) { requestHasKnownVenues = true; }
-    }
-    this.requestHasKnownVenues = requestHasKnownVenues;
-  }
 
 }

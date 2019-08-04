@@ -8,6 +8,11 @@
 			</form>
 
 			<div id="filters">
+          <input [(ngModel)]="displayBBNotFriendly" type="checkbox" [ngModelOptions]="{standalone: true}" />
+	        <label>Afficher les lieux non BB-Friendly ?</label>
+          <input [(ngModel)]="displayUnknownStatus" type="checkbox" [ngModelOptions]="{standalone: true}" />
+          <label>Afficher les lieux sans information ?</label>
+          <br />
 	        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" [ngModelOptions]="{standalone: true}" />
 	        <label>Espace poussette ?</label>
 	        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" [ngModelOptions]="{standalone: true}" />
@@ -21,26 +26,35 @@
 			</div>
 
 		    <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0 d-inline d-md-none" type="submit" (click)="inputRecherche()">Chercher!</button>
-			
+
    </nav>
 
 	<div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">
 	  <div class="container">
 	    <h3 class="display-7">BaBy-MeSi</h3>
-		<img src="assets/welcome.jpg" class="img-fluid img-thumbnail"/>		
+		<img src="assets/welcome.jpg" class="img-fluid img-thumbnail"/>
 	    <p class="lead"><small><i>Because you don't leave baby in a corner.</i></small></p>
 	  </div>
 	</div>
 
-    <app-venue-map *ngIf="!welcomeScreen && !isComputing" [lat]="welcomeLatitude" [lng]="welcomeLongitude" [zoomLevel]="welcomeZoomLevel" [venues]="mesiVenues">
-    </app-venue-map>
+  <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
 
+  <app-venue-map *ngIf="!welcomeScreen && !isComputing"
+  [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered"
+  [venuesBBNotFriendly]="mesiVenuesBBNotFriendly"
+  [venuesUnknownStatus]="mesiVenuesUnknownStatus" 
+  [displayBBFriendly]="displayBBFriendly"
+  [displayBBNotFriendly]="displayBBNotFriendly"
+  [displayUnknownStatus]="displayUnknownStatus">
+  </app-venue-map>
 
-    <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
-
-    <app-venue-list *ngIf="requestHasKnownVenues; else NoResult" [venues]="mesiVenues"></app-venue-list>
-    <ng-template #NoResult>
-        <p id="no-result">Oups ... aucun résultat. Pas très bébé-friendly par ici ...</p>
-    </ng-template>
+  <app-venue-list *ngIf="!welcomeScreen && !isComputing"
+  [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered"
+  [venuesBBNotFriendly]="mesiVenuesBBNotFriendly"
+  [venuesUnknownStatus]="mesiVenuesUnknownStatus"
+  [displayBBFriendly]="displayBBFriendly"
+  [displayBBNotFriendly]="displayBBNotFriendly"
+  [displayUnknownStatus]="displayUnknownStatus">
+  </app-venue-list>
 
 </div>

@@ -8,12 +8,14 @@ import { VenueMesi } from '../venue-mesi';
 })
 export class VenueMapComponent implements OnInit {
 
-  title = 'mesi-front';
-  @Input() lat: number ;
-  @Input() lng: number ;
-  @Input() zoomLevel: number ;
 
-  @Input() venues: Array<VenueMesi>;
+  @Input() venuesBBFriendly: Array<VenueMesi>;
+  @Input() venuesBBNotFriendly: Array<VenueMesi>;
+  @Input() venuesUnknownStatus: Array<VenueMesi>;
+
+  @Input() displayBBFriendly: boolean;
+  @Input() displayBBNotFriendly: boolean;
+  @Input() displayUnknownStatus: boolean;
 
    ngOnInit() {
    }

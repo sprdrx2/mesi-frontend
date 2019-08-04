@@ -1,9 +1,18 @@
-	<h4 *ngIf="venues?.length > 0">Endroits BB-Friendly</h4>
-
 	<div class="row">
 
-	<ng-template ngFor let-v [ngForOf]="venues" let-i="index" let-odd="odd" [ngForTrackBy]="trackById">
-		<app-mesi-venue *ngIf="v.knownStatus && v.bbFriendly" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
-	</ng-template>
+    <div *ngIf="displayBBFriendly">
+        <h4>Venues BaBy-Friendly !</h4>
+        <app-mesi-venue *ngFor="let v of venuesBBFriendly" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
+    </div>
+
+    <div *ngIf="displayBBNotFriendly">
+        <h4>Venues Pas BaBy-Friendly !</h4>
+        <app-mesi-venue *ngFor="let v of venuesBBNotFriendly" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
+    </div>
+
+    <div *ngIf="displayUnknownStatus">
+        <h4>Venues inconnues au bataillons !</h4>
+        <app-mesi-venue *ngFor="let v of venuesUnknownStatus" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
+    </div>
 
 	</div>

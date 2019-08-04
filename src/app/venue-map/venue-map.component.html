@@ -1,5 +1,15 @@
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoomLevel" [fitBounds]="venues?.length > 0">
+<agm-map [zoom]="9" [fitBounds]="true">
 
-	<app-venue-mesi-marker *ngFor="let v of venues" [v]="v"></app-venue-mesi-marker>
-        
+  <div *ngIf="displayBBFriendly">
+      <app-venue-mesi-marker *ngFor="let v of venuesBBFriendly" [v]="v"></app-venue-mesi-marker>
+  </div>
+
+  <div *ngIf="displayBBNotFriendly">
+      <app-venue-mesi-marker *ngFor="let v of venuesBBNotFriendly" [v]="v"></app-venue-mesi-marker>
+  </div>
+
+  <div *ngIf="displayUnknownStatus">
+      <app-venue-mesi-marker *ngFor="let v of venuesUnknownStatus" [v]="v"></app-venue-mesi-marker>
+  </div>
+
 </agm-map>
