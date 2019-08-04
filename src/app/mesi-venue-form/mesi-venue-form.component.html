@@ -1,29 +1,29 @@
 <form>
   <div class="form-group">
     <label for="name">Espace Poussette ?</label>
-    <input [(ngModel)]="mesiVenue.hasEspacePoussette" type="checkbox" class="form-control" id="hasEspacePoussette" required>
+    <input [(ngModel)]="mesiVenue.espacePoussette" type="checkbox" class="form-control" id="hasEspacePoussette" name="hasEspacePoussette" required>
   </div>
 
   <div class="form-group">
     <label for="name">Espace Jeu ?</label>
-    <input [(ngModel)]="mesiVenue.hasEspaceJeu" type="checkbox" class="form-control" id="hasEspaceJeu" required>
+    <input [(ngModel)]="mesiVenue.espaceJeu" type="checkbox" class="form-control" id="hasEspaceJeu" name="hasEspaceJeu" required>
   </div>
 
   <div class="form-group">
     <label for="name">Menu enfant ?</label>
-    <input [(ngModel)]="mesiVenue.hasMenuEnfant" type="checkbox" class="form-control" id="hasMenuEnfant" required>
+    <input [(ngModel)]="mesiVenue.menuEnfant" type="checkbox" class="form-control" id="hasMenuEnfant" name="hasMenuEnfant" required>
   </div>
 
   <div class="form-group">
     <label for="name">Table à langer ?</label>
-    <input [(ngModel)]="mesiVenue.hasTableLanger" type="checkbox" class="form-control" id="hasTableLanger" required>
+    <input [(ngModel)]="mesiVenue.tableLanger" type="checkbox" class="form-control" id="hasTableLanger" name="hasTableLanger" required>
   </div>
 
   <div class="form-group">
     <label for="name">Table à langer accessible aux hommes ?</label>
-    <input [(ngModel)]="mesiVenue.hasTableLangerMen" type="checkbox" class="form-control" id="hasTableLangerMen" required>
+    <input [(ngModel)]="mesiVenue.tableLangerMen" type="checkbox" class="form-control" id="hasTableLangerMen" name="hasTableLangerMen" required>
   </div>
 
-  <button (click)="submit()" type="submit" class="btn btn-success">Partagez !</button>
+  <button *ngIf="!posting" (click)="submit()" type="submit" class="btn btn-success">Partagez !</button>
 
 </form>

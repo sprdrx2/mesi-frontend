@@ -12,6 +12,7 @@ import { MesiVenueComponent } from './mesi-venue/mesi-venue.component';
 import { VenueMesiMarkerComponent } from './venue-mesi-marker/venue-mesi-marker.component';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { MesiVenueFormComponent } from './mesi-venue-form/mesi-venue-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
     VenueMapComponent,
     VenueListComponent,
     MesiVenueComponent,
-    VenueMesiMarkerComponent
+    VenueMesiMarkerComponent,
+    MesiVenueFormComponent,
   ],
   imports: [
   BrowserModule,

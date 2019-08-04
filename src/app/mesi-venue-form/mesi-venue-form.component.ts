@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VenueMesi } from '../venue-mesi';
+import { VenueMesiService } from '../venue-mesi.service';
 
 @Component({
   selector: 'app-mesi-venue-form',
@@ -9,12 +10,19 @@ import { VenueMesi } from '../venue-mesi';
 export class MesiVenueFormComponent implements OnInit {
 
   @Input() mesiVenue: VenueMesi;
+  private posting = false;
 
-  constructor() { }
+  constructor(private venueMesiService: VenueMesiService) { }
 
   ngOnInit() {
   }
 
-  submit() { console.log('Soumission: '); console.log(this.mesiVenue); }
+  async submit() {
+    this.posting = true;
+    console.log('Soumission: ');
+    console.log(this.mesiVenue);
+    this.mesiVenue = await this.venueMesiService.createOrUpdateVenue(this.mesiVenue);
+    this.posting = false;
+  }
 
 }

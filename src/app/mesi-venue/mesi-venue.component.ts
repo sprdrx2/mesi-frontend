@@ -9,10 +9,14 @@ import { VenueMesi } from '../venue-mesi';
 export class MesiVenueComponent implements OnInit {
 
   @Input() v: VenueMesi;
+  private displayForm: boolean;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  formDisplay() {
+    this.displayForm = true;
+  }
 }
