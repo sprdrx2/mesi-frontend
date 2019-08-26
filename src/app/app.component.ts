@@ -32,6 +32,11 @@ export class AppComponent implements OnInit {
   displayBBFriendly: boolean;
   mesiBackendResponse: MesiBackendResponse;
   recensementMode: boolean;
+  autocompleteOptions = {
+    types: [],
+    componentRestrictions: { country: 'FR' }
+  };
+
 
   ngOnInit() {
      this.mesiVenuesFilter = new VenueMesiFilter;

@@ -13,6 +13,8 @@ import { VenueMesiMarkerComponent } from './venue-mesi-marker/venue-mesi-marker.
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { MesiVenueFormComponent } from './mesi-venue-form/mesi-venue-form.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { MesiVenueFormComponent } from './mesi-venue-form/mesi-venue-form.compon
   FormsModule,
   HttpClientModule,
   NgbModule,
-  AgmSnazzyInfoWindowModule
+  AgmSnazzyInfoWindowModule,
+  GooglePlaceModule
   ],
   providers: [YelpService, VenueMesiService],
   bootstrap: [AppComponent]
