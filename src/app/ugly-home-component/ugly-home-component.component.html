@@ -1,0 +1,49 @@
+<nav class="navbar navbar-dark sticky-top bg-dark">
+    <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" ngx-google-places-autocomplete [options]="autocompleteOptions" #placesRef="ngx-places"
+        />
+        <span class="d-none d-md-inline">
+      <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+      <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
+      <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
+      </span>
+    </form>
+
+    <form id="filters" class="d-none d-md-inline">
+        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Espace poussette ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Espace jeu ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasMenuEnfant" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Menu enfant ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Table à langer ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Table à langer accessible aux hommes ?</label><br />
+    </form>
+
+    <span class="d-inline d-md-none">
+      <button *ngIf="!isComputing" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+      <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
+      <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
+      </span>
+</nav>
+
+<div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h3 class="display-7">BaBy-MeSi</h3>
+        <img src="assets/welcome.jpg" class="img-fluid img-thumbnail" />
+        <p class="lead"><small><i>Because you don't leave baby in a corner.</i></small></p>
+    </div>
+</div>
+
+<div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+
+<app-venue-map *ngIf="!welcomeScreen && !isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus"   [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
+    [displayUnknownStatus]="displayUnknownStatus">
+</app-venue-map>
+
+<app-venue-list *ngIf="!welcomeScreen && !isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus" [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
+    [displayUnknownStatus]="displayUnknownStatus">
+</app-venue-list>

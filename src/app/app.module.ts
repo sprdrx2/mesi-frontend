@@ -14,7 +14,13 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { MesiVenueFormComponent } from './mesi-venue-form/mesi-venue-form.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { RouterModule, Routes } from '@angular/router';
+import { UglyHomeComponentComponent } from './ugly-home-component/ugly-home-component.component';
 
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: UglyHomeComponentComponent }
+];
 
 @NgModule({
   declarations: [
@@ -24,6 +30,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     MesiVenueComponent,
     VenueMesiMarkerComponent,
     MesiVenueFormComponent,
+    UglyHomeComponentComponent,
   ],
   imports: [
   BrowserModule,
@@ -32,7 +39,11 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
   HttpClientModule,
   NgbModule,
   AgmSnazzyInfoWindowModule,
-  GooglePlaceModule
+  GooglePlaceModule,
+  RouterModule.forRoot(
+    appRoutes,
+    { enableTracing: true } // <-- debugging purposes only
+  )
   ],
   providers: [YelpService, VenueMesiService],
   bootstrap: [AppComponent]
