@@ -1,0 +1,26 @@
+<nav class="navbar navbar-dark sticky-top bg-dark">
+    <a class="navbar-brand" routerLink="/welcome"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" />
+        <span class="d-none d-md-inline">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+    </span>
+    </form>
+
+    <form id="filters" class="d-none d-md-inline">
+        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Espace poussette ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Espace jeu ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasMenuEnfant" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Menu enfant ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Table à langer ?</label>
+        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <label>Table à langer accessible aux hommes ?</label><br />
+    </form>
+
+    <span class="d-inline d-md-none">
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+    </span>
+</nav>

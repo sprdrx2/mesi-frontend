@@ -11,6 +11,7 @@ import { MesiBackendResponse } from '../mesi-backend-response';
   templateUrl: './ugly-home-component.component.html',
   styleUrls: ['./ugly-home-component.component.css']
 })
+
 export class UglyHomeComponentComponent implements OnInit {
 
   constructor(private yelpService: YelpService, private venueMesiService: VenueMesiService) { }
@@ -34,7 +35,6 @@ export class UglyHomeComponentComponent implements OnInit {
     types: [],
     componentRestrictions: { country: 'FR' }
   };
-
 
   ngOnInit() {
      this.mesiVenuesFilter = new VenueMesiFilter;

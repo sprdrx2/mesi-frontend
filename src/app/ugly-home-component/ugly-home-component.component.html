@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark sticky-top bg-dark">
-    <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
+    <a class="navbar-brand" [routerLink]="home"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" ngx-google-places-autocomplete [options]="autocompleteOptions" #placesRef="ngx-places"
         />

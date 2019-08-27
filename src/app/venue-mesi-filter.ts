@@ -43,7 +43,7 @@ export class VenueMesiFilter {
     }
 
     hasFilters(): boolean {
-      if (
+      /*if (
         this.hasEspaceJeu || this.hasEspacePoussette ||
         this.hasMenuEnfant ||
         this.hasTableLanger || this.hasTableLangerMen
@@ -53,7 +53,8 @@ export class VenueMesiFilter {
         }
         else   {
            return false;
-        }
+        }*/
+        return false;
     }
 
 }

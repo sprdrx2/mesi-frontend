@@ -1,0 +1,9 @@
+<div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+
+<app-venue-map *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus"   [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
+    [displayUnknownStatus]="displayUnknownStatus">
+</app-venue-map>
+
+<app-venue-list *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus" [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
+    [displayUnknownStatus]="displayUnknownStatus">
+</app-venue-list>
