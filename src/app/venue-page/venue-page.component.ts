@@ -14,7 +14,6 @@ export class VenuePageComponent implements OnInit {
 
 
   venueMesi: VenueMesi;
-
   isComputing = true;
 
   constructor(private route: ActivatedRoute, private yelpService: YelpService, private venueMesiService: VenueMesiService) { }
@@ -23,15 +22,15 @@ export class VenuePageComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         this.rechercheOne(params['yelp_id']);
-             
+      
       }
-    );  
+    );
+
   }
 
   async rechercheOne(yelp_id) {
   this.isComputing = true;
   this.venueMesi = await this.venueMesiService.getVenue(yelp_id);
   this.isComputing = false;
-
   }
 }
