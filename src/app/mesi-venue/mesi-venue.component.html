@@ -20,18 +20,43 @@
       <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
       </app-mesi-venue-form>
     </div>
+=======
+    <h4><a [routerLink]="[ '/venue', v.yelp_id ]">{{ v.yelpVenue.name }}</a></h4>
 
-	</div>
+    <div *ngIf="v.knownStatus">
+        <ul *ngIf="v.bbFriendly && !displayForm">
+            <li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
+            <li *ngIf="v.tableLanger">Table à langer disponible.</li>
+            <li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
+            <li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
+            <li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
+        </ul>
 
-	<div *ngIf="!v.knownStatus">
-    <p>Nous n'avons pas d'information concernant cet endroit.</p>
-    <button *ngIf="!displayForm" class="btn btn-secondary" (click)="formDisplay()">Renseignez-nous !</button>
-    <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
-    </app-mesi-venue-form>
-	</div>
+        <!-- wtf bootstrap -->
+        <p>{{ v.yelpVenue.location.address1 }} {{ v.yelpVenue.location.address2 }} {{ v.yelpVenue.location.address3 }}</p>
+        <p>Tel: {{ v.yelpVenue.phone }}</p>
 
+        <button *ngIf="v.bbFriendly && !displayForm" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
 
-	<img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%"/><!-- wtf bootstrap -->
-	<p>{{ v.yelpVenue.location.address1 }} {{ v.yelpVenue.location.address2 }} {{ v.yelpVenue.location.address3 }}</p>
-	<p>Tel: {{ v.yelpVenue.phone }}</p>
+        <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
+        </app-mesi-venue-form>
+
+        <div *ngIf="!v.bbFriendly">
+            <p>Ce lieu ne propose pour les enfants ni les parents.</p>
+            <button *ngIf="!displayForm" class="btn btn-secondary" (click)="formDisplay()">Détrompez-nous !</button>
+            <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
+            </app-mesi-venue-form>
+        </div>
+
+    </div>
+
+    <div *ngIf="!v.knownStatus">
+        <p>Nous n'avons pas d'information concernant cet endroit.</p>
+        <button *ngIf="!displayForm" class="btn btn-secondary" (click)="formDisplay()">Renseignez-nous !</button>
+        <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
+        </app-mesi-venue-form>
+    </div>
+
+    <img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%" />
+
 </div>
