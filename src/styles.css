@@ -10,6 +10,9 @@
 
 body{
   font-family: "Champagne & Limousines";
+}
 
-
+.btn-secondary{
+  background-color:#11808C;
+  border-color:#11808C;
 }

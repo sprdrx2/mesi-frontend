@@ -2,9 +2,11 @@ agm-map {
   height: 300px;
 }
 
-.container{
+.container, .jumbotron{
   background-color:#D7D7D9;
+  border-radius:10px;
 }
+
 
 #filters {
 
@@ -18,18 +20,20 @@ agm-map {
   border-radius: 10px;
 
   display : flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   justify-content:  center;
 
 
 }
-
+#barreRechercheLieu{
+  width:75%;
+}
 #labelRecherche{
   display : flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content:  center;
+  justify-content:  space-around;
 }
 
 .checkboxesFiltres{
@@ -71,4 +75,5 @@ navbar{
 
 #catchPhrase{
   font-family: "Champagne & Limousines Bold";
+  color:#11808C;
 }

@@ -3,20 +3,25 @@
 
   <nav class="navbar navbar-dark sticky-top">
 
-    <a class="navbar-brand"><span style="color:gray"> <img src="/assets/baby_logo.png"width="50" height="50"  alt=""> BaBeezy Travel</span></a> <!--class="d-inline-block align-top"-->
+    <a class="navbar-brand">
+      <span style="color:gray">
+        <img src="/assets/baby_logo.png"width="50" height="50"  alt="">
+        <h1 style="color:#11808C">BaBeezy Travel</h1>
+
+      </span></a> <!--class="d-inline-block align-top"-->
     <form id="Recherche" class="form-inline">
       <input id="barreRechercheLieu" class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" />
       <span class="d-none d-md-inline">
         <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher</button>
         <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
         <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
-        </span>gi
+        </span>
     </form>
 
     <form id="filters" class="d-none d-md-inline">
       <span id="labelRecherche">
         <label> Filtrez selon vos besoins : </label>
-        <p>Survolez pour plus d'informations</p>
+        <!--<p>Survolez pour plus d'informations</p> -->
       </span>
       <span id="block_checkboxes_icones_filtres">
         <span class="checkboxesFiltres" padding-right:5px>
@@ -63,8 +68,8 @@
     </form>
 
     <span class="d-inline d-md-none">
-        <button *ngIf="!isComputing" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
-        <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
+        <button *ngIf="!isComputing" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher</button>
+        <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous</button>
         <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
         </span>
   </nav>
