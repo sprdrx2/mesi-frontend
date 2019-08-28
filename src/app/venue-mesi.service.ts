@@ -41,9 +41,9 @@ export class VenueMesiService {
   async createOrUpdateVenue(venue: VenueMesi) {
     let newVenue: VenueMesi;
     if (!venue.knownStatus) {
-      await this.httpClient.post(this.venueMesiApiCreateAddress, venue).toPromise().then((data: VenueMesi) => newVenue = data);
+      await this.httpClient.post(this.venueMesiApiCreateAddress, venue, this.currentUserHttpOptions).toPromise().then((data: VenueMesi) => newVenue = data);
     } else {
-      await this.httpClient.put(this.venueMesiApiUpdateAddress, venue).toPromise().then((data: VenueMesi) => newVenue = data);
+      await this.httpClient.put(this.venueMesiApiUpdateAddress, venue, this.currentUserHttpOptions).toPromise().then((data: VenueMesi) => newVenue = data);
     }
     console.log('Backend response: '); console.log(newVenue);
     return newVenue;
@@ -68,7 +68,6 @@ export class VenueMesiService {
     return this.userIsLoggued;
   }
 
-  
-
+  getUserLogin() { return this.currentUserLogin; }
 
 }
