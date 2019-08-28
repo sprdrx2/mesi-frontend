@@ -1,0 +1,11 @@
+<div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+
+<div *ngIf="!isComputing" class="form-group">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <label>Email</label>
+        <input [(ngModel)]="userMesi.email" type="text" class="form-control" name="email" required/>
+        <label>Password</label>
+        <input [(ngModel)]="userMesi.password" type="text" class="form-control" name="password" required/>
+        <button type="submit" (click)="onSubmit()">Submit!</button>
+    </form>
+</div>

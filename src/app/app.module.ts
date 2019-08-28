@@ -21,6 +21,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { VenuePageComponent } from './venue-page/venue-page.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+
 
 const mesiRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
@@ -28,7 +30,8 @@ const mesiRoutes: Routes = [
   { path: 'welcome', component: WelcomeScreenComponent },
   { path: 'search', component: SearchEngineComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'venue/:yelp_id', component: VenuePageComponent}
+  { path: 'venue/:yelp_id', component: VenuePageComponent},
+  { path: 'signin', component: InscriptionComponent }
 ];
 
 
@@ -46,6 +49,7 @@ const mesiRoutes: Routes = [
     SearchEngineComponent,
     LoginPageComponent,
     VenuePageComponent,
+    InscriptionComponent,
   ],
   imports: [
   BrowserModule,

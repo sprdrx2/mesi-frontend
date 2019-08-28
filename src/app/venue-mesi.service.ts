@@ -6,6 +6,8 @@ import { YelpService } from './yelp.service';
 import { MesiBackendResponse } from './mesi-backend-response';
 import { Router } from '@angular/router';
 import { of, BehaviorSubject, Observable } from 'rxjs';
+import { UserMesi } from './user-mesi';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,7 @@ export class VenueMesiService {
   private venueMesiApiCreateAddress    = this.venueMesiApiAddress + '/venue/create';
   private venueMesiApiUpdateAddress    = this.venueMesiApiAddress + '/venue/update';
   private venueMesiApiTestLoginAddress = this.venueMesiApiAddress + '/user/testlogin';
+  private userMesiApiCreateAddress = this.venueMesiApiAddress + '/user/signin';
   private venueAddress = this.venueMesiApiAddress + '/venue';
 
   private userPassword: string;
@@ -80,7 +83,8 @@ export class VenueMesiService {
   isLoginComputing(): Observable<boolean> {
     return this.updatedLoginIsComputing;
   }
-  getUserLogin() { return this.currentUserLogin; }
+
+  getCurrentUserLogin() { return this.currentUserLogin; }
 
   async getVenue(yelp_id: String) {
     let venueEdit: VenueMesi;
@@ -88,5 +92,23 @@ export class VenueMesiService {
     return venueEdit;
   }
 
+  async createUser(user: UserMesi) {
+    let newUser: UserMesi;
+    await this.httpClient.post(this.userMesiApiCreateAddress, user).toPromise().then((data: UserMesi) => newUser = data);
+    console.log('Backend response: '); console.log(newUser);
+    const headers = new HttpHeaders ({
+      'Authorization': 'Basic ' + btoa(user.email + ':' + user.password)
+    });
+    this.currentUserHttpHeaders = headers;
+    this.updatedUserIsLoggued.next(true);
+    this.currentUserLogin = user.email;
+    return newUser;
+  }
+
+  logOut() {
+    this.currentUserHttpHeaders = null;
+    this.updatedUserIsLoggued.next(false);
+    this.currentUserLogin = '';
+  }
 
 }
