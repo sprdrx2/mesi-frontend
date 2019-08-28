@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { YelpVenue } from './yelp-venue';
 import { YelpService } from './yelp.service';
 import { MesiBackendResponse } from './mesi-backend-response';
+import { Router } from '@angular/router';
+import { of, BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +21,11 @@ export class VenueMesiService {
 
   private userPassword: string;
   private userLogin: string;
-  private userIsLoggued: boolean;
-  private currentUserHttpOptions;
+  private userIsLoggued = false;
+  private currentUserHttpHeaders: HttpHeaders;
   private currentUserLogin;
+  private updatedUserIsLoggued: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private updatedLoginIsComputing: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   mesiVenues;
 
@@ -42,33 +46,40 @@ export class VenueMesiService {
   async createOrUpdateVenue(venue: VenueMesi) {
     let newVenue: VenueMesi;
     if (!venue.knownStatus) {
-      await this.httpClient.post(this.venueMesiApiCreateAddress, venue).toPromise().then((data: VenueMesi) => newVenue = data);
+      await this.httpClient.post(this.venueMesiApiCreateAddress, venue, { headers: this.currentUserHttpHeaders }).toPromise().then((data: VenueMesi) => newVenue = data);
     } else {
-      await this.httpClient.put(this.venueMesiApiUpdateAddress, venue).toPromise().then((data: VenueMesi) => newVenue = data);
+      await this.httpClient.put(this.venueMesiApiUpdateAddress, venue, { headers: this.currentUserHttpHeaders }).toPromise().then((data: VenueMesi) => newVenue = data);
     }
     console.log('Backend response: '); console.log(newVenue);
     return newVenue;
   }
 
   async testLogin(login: string, password: string) {
+    this.updatedLoginIsComputing.next(true);
+    console.log('essai connexion, login: ' +  login);
     const headers = new HttpHeaders ({
         'Authorization': 'Basic ' + btoa(login + ':' + password)
     });
     const httpOptions = { headers: headers };
     await this.httpClient.get(this.venueMesiApiTestLoginAddress, httpOptions).toPromise().then(
-      (data) => { 
-        this.userIsLoggued = true;
+      (data) => {
+        console.log('login ok');
+        this.updatedUserIsLoggued.next(true);
         this.currentUserLogin = login;
-        this.currentUserHttpOptions = httpOptions;
-      }, (error) => { this.userIsLoggued = false; console.log('a'); }).catch(
-      (err) => { this.userIsLoggued = false; console.log('b'); }
+        this.currentUserHttpHeaders = headers;
+      }, (error) => { this.updatedUserIsLoggued.next(false); console.log('login ko'); }).catch(
+      (err) => { this.updatedUserIsLoggued.next(false); console.log('login nok'); }
       );
+      this.updatedLoginIsComputing.next(false);
   }
 
-  isUserLoggued(): boolean {
-    return this.userIsLoggued;
+  isUserLoggued(): Observable<boolean> {
+    return this.updatedUserIsLoggued;
   }
 
+  isLoginComputing(): Observable<boolean> {
+    return this.updatedLoginIsComputing;
+  }
   getUserLogin() { return this.currentUserLogin; }
 
   async getVenue(yelp_id: String) {
@@ -76,5 +87,6 @@ export class VenueMesiService {
     await this.httpClient.get(this.venueAddress + '/' + yelp_id).toPromise().then((data: VenueMesi) => venueEdit = data);
     return venueEdit;
   }
+
 
 }

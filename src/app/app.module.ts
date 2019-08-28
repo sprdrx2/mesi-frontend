@@ -57,7 +57,7 @@ const mesiRoutes: Routes = [
   GooglePlaceModule,
   RouterModule.forRoot(
     mesiRoutes,
-    { enableTracing: false } // <-- debugging purposes only
+    { enableTracing: false, onSameUrlNavigation: 'reload' } // <-- debugging purposes only
   )
   ],
   providers: [YelpService, VenueMesiService],
