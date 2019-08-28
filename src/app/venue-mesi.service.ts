@@ -15,6 +15,7 @@ export class VenueMesiService {
   private venueMesiApiCreateAddress    = this.venueMesiApiAddress + '/venue/create';
   private venueMesiApiUpdateAddress    = this.venueMesiApiAddress + '/venue/update';
   private venueMesiApiTestLoginAddress = this.venueMesiApiAddress + '/user/testlogin';
+  private venueAddress = this.venueMesiApiAddress + '/venue';
 
   private userPassword: string;
   private userLogin: string;
@@ -41,9 +42,9 @@ export class VenueMesiService {
   async createOrUpdateVenue(venue: VenueMesi) {
     let newVenue: VenueMesi;
     if (!venue.knownStatus) {
-      await this.httpClient.post(this.venueMesiApiCreateAddress, venue, this.currentUserHttpOptions).toPromise().then((data: VenueMesi) => newVenue = data);
+      await this.httpClient.post(this.venueMesiApiCreateAddress, venue).toPromise().then((data: VenueMesi) => newVenue = data);
     } else {
-      await this.httpClient.put(this.venueMesiApiUpdateAddress, venue, this.currentUserHttpOptions).toPromise().then((data: VenueMesi) => newVenue = data);
+      await this.httpClient.put(this.venueMesiApiUpdateAddress, venue).toPromise().then((data: VenueMesi) => newVenue = data);
     }
     console.log('Backend response: '); console.log(newVenue);
     return newVenue;
@@ -69,5 +70,11 @@ export class VenueMesiService {
   }
 
   getUserLogin() { return this.currentUserLogin; }
+
+  async getVenue(yelp_id: String) {
+    let venueEdit: VenueMesi;
+    await this.httpClient.get(this.venueAddress + '/' + yelp_id).toPromise().then((data: VenueMesi) => venueEdit = data);
+    return venueEdit;
+  }
 
 }

@@ -1,0 +1,5 @@
+<div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+
+<div *ngIf="!isComputing">
+    <app-mesi-venue [v]="venueMesi"></app-mesi-venue>
+</div>

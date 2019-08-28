@@ -20,13 +20,15 @@ import { WelcomeScreenComponent } from './welcome-screen/welcome-screen.componen
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { VenuePageComponent } from './venue-page/venue-page.component';
 
 const mesiRoutes: Routes = [
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   { path: 'home', component: UglyHomeComponentComponent },
   { path: 'welcome', component: WelcomeScreenComponent },
   { path: 'search', component: SearchEngineComponent },
-  { path: 'login', component: LoginPageComponent }
+  { path: 'login', component: LoginPageComponent },
+  { path: 'venue/:yelp_id', component: VenuePageComponent}
 ];
 
 
@@ -43,6 +45,7 @@ const mesiRoutes: Routes = [
     SearchBarComponent,
     SearchEngineComponent,
     LoginPageComponent,
+    VenuePageComponent,
   ],
   imports: [
   BrowserModule,
