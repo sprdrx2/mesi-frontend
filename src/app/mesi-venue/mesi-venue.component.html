@@ -2,19 +2,21 @@
 	<h4>{{ v.yelpVenue.name }}</h4>
 
 	<div *ngIf="v.knownStatus">
-			<ul *ngIf="v.bbFriendly && !displayForm">
-				<li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
-				<li *ngIf="v.tableLanger">Table à langer disponible.</li>
-				<li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
-				<li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
-				<li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
-      </ul>
+    <ul *ngIf="v.bbFriendly && !displayForm">
+      <li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
+      <li *ngIf="v.tableLanger">Table à langer disponible.</li>
+      <li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
+      <li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
+      <li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
+      <li *ngIf="v.chaiseHaute">Chaise Haute disponible.</li>
+      <li *ngIf="v.wcEnfant">WC taille enfant disponible.</li>
+    </ul>
       <button *ngIf="v.bbFriendly && !displayForm" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
       <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
       </app-mesi-venue-form>
 
 		<div *ngIf="!v.bbFriendly">
-      <p>Ce lieu ne propose pour les enfants ni les parents.</p>
+      <p>Ce lieu ne propose pas d'aménagement adapté aux familles.</p>
       <button *ngIf="!displayForm" class="btn btn-secondary" (click)="formDisplay()">Détrompez-nous !</button>
       <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
       </app-mesi-venue-form>

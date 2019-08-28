@@ -1,32 +1,38 @@
 import { VenueMesi } from './venue-mesi';
 
 export class VenueMesiFilter {
-    hasEspacePoussette: boolean;
-    hasTableLanger: boolean;
-    hasTableLangerMen: boolean;
-    hasMenuEnfant: boolean;
-    hasEspaceJeu: boolean;
+    EspacePoussetteRequired: boolean;
+    TableLangerRequired: boolean;
+    MenTableLangerRequired: boolean;
+    MenuEnfantRequired: boolean;
+    EspaceJeuRequired: boolean;
+    ChaiseHauteRequired: boolean;
+    WcEnfantRequired: boolean;
 
     constructor() {
         this.reset();
     }
 
     reset() {
-        this.hasEspacePoussette = false;
-        this.hasTableLanger = false;
-        this.hasTableLangerMen = false;
-        this.hasMenuEnfant = false;
-        this.hasEspaceJeu = false;
+        this.EspacePoussetteRequired = false;
+        this.TableLangerRequired = false;
+        this.MenTableLangerRequired = false;
+        this.MenuEnfantRequired = false;
+        this.EspaceJeuRequired = false;
+        this.ChaiseHauteRequired = false;
+        this.WcEnfantRequired = false;
     }
 
 
     venueComplies(venue: VenueMesi): boolean {
       if (
-        (this.hasEspaceJeu && !(venue.espaceJeu))
-        || (this.hasEspacePoussette && !(venue.espacePoussette))
-        || (this.hasMenuEnfant && !(venue.menuEnfant))
-        || (this.hasTableLanger && !(venue.tableLanger))
-        || (this.hasTableLangerMen && !(venue.tableLangerMen))
+        (this.EspaceJeuRequired && !(venue.espaceJeu))
+        || (this.EspacePoussetteRequired && !(venue.espacePoussette))
+        || (this.MenuEnfantRequired && !(venue.menuEnfant))
+        || (this.TableLangerRequired && !(venue.tableLanger))
+        || (this.MenTableLangerRequired && !(venue.tableLangerMen))
+        || (this.ChaiseHauteRequired && !(venue.chaiseHaute))
+        || (this.WcEnfantRequired && !(venue.wcEnfant))
         ) { return false; }
       return true;
     }
@@ -44,9 +50,10 @@ export class VenueMesiFilter {
 
     hasFilters(): boolean {
       if (
-        this.hasEspaceJeu || this.hasEspacePoussette ||
-        this.hasMenuEnfant ||
-        this.hasTableLanger || this.hasTableLangerMen
+        this.EspaceJeuRequired || this.EspacePoussetteRequired ||
+        this.MenuEnfantRequired ||
+        this.TableLangerRequired || this.MenTableLangerRequired ||
+        this.ChaiseHauteRequired || this.WcEnfantRequired
         )
         {
           return true;

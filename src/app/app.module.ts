@@ -13,6 +13,13 @@ import { VenueMesiMarkerComponent } from './venue-mesi-marker/venue-mesi-marker.
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { MesiVenueFormComponent } from './mesi-venue-form/mesi-venue-form.component';
+import {Routes} from '@angular/router';
+import { SignInComponent } from './sign-in/sign-in.component';
+
+const routes: Routes = [
+  {path: 'signin', component: SignInComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -22,6 +29,7 @@ import { MesiVenueFormComponent } from './mesi-venue-form/mesi-venue-form.compon
     MesiVenueComponent,
     VenueMesiMarkerComponent,
     MesiVenueFormComponent,
+    SignInComponent,
   ],
   imports: [
   BrowserModule,

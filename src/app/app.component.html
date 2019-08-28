@@ -1,62 +1,101 @@
-<div style="text-align:center" class="container-fluid">
+<div style="text-align:center" class="container-fluid" xmlns:margin="http://www.w3.org/1999/xhtml"
+     xmlns:padding="http://www.w3.org/1999/xhtml" xmlns:padding-right="http://www.w3.org/1999/xhtml">
 
-   <nav class="navbar navbar-dark sticky-top bg-dark">
-	   <a class="navbar-brand"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
-      <form class="form-inline">
-		  <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" />
-        <span class="d-none d-md-inline">
-        <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
+  <nav class="navbar navbar-dark sticky-top">
+
+    <a class="navbar-brand"><span style="color:gray"> <img src="/assets/baby_logo.png"width="50" height="50"  alt=""> BaBeezy Travel</span></a> <!--class="d-inline-block align-top"-->
+    <form id="Recherche" class="form-inline">
+      <input id="barreRechercheLieu" class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" />
+      <span class="d-none d-md-inline">
+        <button *ngIf="isComputing == false" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher</button>
         <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
         <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
+        </span>gi
+    </form>
+
+    <form id="filters" class="d-none d-md-inline">
+      <span id="labelRecherche">
+        <label> Filtrez selon vos besoins : </label>
+        <p>Survolez pour plus d'informations</p>
+      </span>
+      <span id="block_checkboxes_icones_filtres">
+        <span class="checkboxesFiltres" padding-right:5px>
+            <input [(ngModel)]="mesiVenuesFilter.EspacePoussetteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+            <img class="iconeFiltreRecherche" src="/assets/strollerpark2.png"  alt="">
+          <!-- <label>Espace poussette</label> -->
+          </span>
+
+      <span class="checkboxesFiltres">
+             <input [(ngModel)]="mesiVenuesFilter.EspaceJeuRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <img class="iconeFiltreRecherche" src="/assets/toy.png" alt="">
+        <!-- <label>Espace jeu</label> -->
         </span>
-      </form>
+      <span class="checkboxesFiltres">
+           <input [(ngModel)]="mesiVenuesFilter.MenuEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <img class="iconeFiltreRecherche" src="/assets/meal2.PNG" alt="">
+        <!-- <label>Menu enfant</label>-->
+         </span>
+      <span class="checkboxesFiltres">
+            <input [(ngModel)]="mesiVenuesFilter.TableLangerRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+          <img class="iconeFiltreRecherche" src="/assets/tableLangerFemme.png" alt="">
+        <!-- <label>Table à langer</label> -->
+          </span>
+      <span class="checkboxesFiltres">
+            <input [(ngModel)]="mesiVenuesFilter.MenTableLangerRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+          <img class="iconeFiltreRecherche" src="/assets/tableLangerHomme.png" alt="">
+        <!--<label>Table à langer accessible aux hommes</label>-->
+          </span>
+      <span class="checkboxesFiltres">
+          <input [(ngModel)]="mesiVenuesFilter.ChaiseHauteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <img class="iconeFiltreRecherche" src="/assets/highchair.png" alt="">
+        <!--<label>Chaise Haute</label> -->
+          </span>
+      <span class="checkboxesFiltres">
+          <input [(ngModel)]="mesiVenuesFilter.WcEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+        <img class="iconeFiltreRecherche" src="/assets/wcEnfant.png" alt="">
+        <!--<label>WC Enfant</label><br /> -->
+      </span>
 
-			<form id="filters" class="d-none d-md-inline">
-	        <input [(ngModel)]="mesiVenuesFilter.hasEspacePoussette" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Espace poussette ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasEspaceJeu" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Espace jeu ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasMenuEnfant" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Menu enfant ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasTableLanger" type="checkbox" [ngModelOptions]="{standalone: true}" />
-	        <label>Table à langer ?</label>
-	        <input [(ngModel)]="mesiVenuesFilter.hasTableLangerMen" type="checkbox" [ngModelOptions]="{standalone: true}" />
-          <label>Table à langer accessible aux hommes ?</label><br />
-      </form>
+      </span>
 
-        <span class="d-inline d-md-none">
+
+
+    </form>
+
+    <span class="d-inline d-md-none">
         <button *ngIf="!isComputing" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
         <button *ngIf="!welcomeScreen && !isComputing && !recensementMode" class="btn btn-secondary" (click)="modeRecensementOn()">Aidez-nous !</button>
         <button *ngIf="!welcomeScreen && !isComputing && recensementMode" class="btn btn-secondary" (click)="modeRecensementOff()">Retour résultats.</button>
         </span>
-   </nav>
+  </nav>
 
-	<div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">
-	  <div class="container">
-	    <h3 class="display-7">BaBy-MeSi</h3>
-		<img src="assets/welcome.jpg" class="img-fluid img-thumbnail"/>
-	    <p class="lead"><small><i>Because you don't leave baby in a corner.</i></small></p>
-	  </div>
-	</div>
+  <div *ngIf="welcomeScreen" class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h3 id="catchPhrase" class="display-7">BaBeezy Travel, l'appli qui permet d'alléger votre sac à langer. </h3>
+      <!--<h3  class="display"><small><i>Sortez l'esprit léger (et le sac à langer plein à craquer).</i></small></h3>-->
+      <img id="welcome"src="assets/welcome.jpeg" class="img-fluid img-thumbnail"/>
 
-  <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+    </div>
+  </div>
+
+  <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img id="loadingGif" class="display-6" src="assets/loading.gif" alt="computing..." /></div>
 
   <app-venue-map *ngIf="!welcomeScreen && !isComputing"
-  [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered"
-  [venuesBBNotFriendly]="mesiVenuesBBNotFriendly"
-  [venuesUnknownStatus]="mesiVenuesUnknownStatus" 
-  [displayBBFriendly]="displayBBFriendly"
-  [displayBBNotFriendly]="displayBBNotFriendly"
-  [displayUnknownStatus]="displayUnknownStatus">
+                 [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered"
+                 [venuesBBNotFriendly]="mesiVenuesBBNotFriendly"
+                 [venuesUnknownStatus]="mesiVenuesUnknownStatus" 
+                 [displayBBFriendly]="displayBBFriendly"
+                 [displayBBNotFriendly]="displayBBNotFriendly"
+                 [displayUnknownStatus]="displayUnknownStatus">
   </app-venue-map>
 
   <app-venue-list *ngIf="!welcomeScreen && !isComputing"
-  [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered"
-  [venuesBBNotFriendly]="mesiVenuesBBNotFriendly"
-  [venuesUnknownStatus]="mesiVenuesUnknownStatus"
-  [displayBBFriendly]="displayBBFriendly"
-  [displayBBNotFriendly]="displayBBNotFriendly"
-  [displayUnknownStatus]="displayUnknownStatus">
+                  [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered"
+                  [venuesBBNotFriendly]="mesiVenuesBBNotFriendly"
+                  [venuesUnknownStatus]="mesiVenuesUnknownStatus"
+                  [displayBBFriendly]="displayBBFriendly"
+                  [displayBBNotFriendly]="displayBBNotFriendly"
+                  [displayUnknownStatus]="displayUnknownStatus">
   </app-venue-list>
 
 </div>

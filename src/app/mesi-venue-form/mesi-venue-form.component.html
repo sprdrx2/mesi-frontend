@@ -16,12 +16,22 @@
 
   <div class="form-group">
     <label for="name">Table à langer ?</label>
-    <input [(ngModel)]="mesiVenue.tableLanger" type="checkbox" class="form-control" id="hasTableLanger" name="hasTableLanger" required>
+    <input [(ngModel)]="mesiVenue.tableLanger" type="checkbox" class="form-control" id="TableLangerRequired" name="TableLangerRequired" required>
   </div>
 
   <div class="form-group">
     <label for="name">Table à langer accessible aux hommes ?</label>
-    <input [(ngModel)]="mesiVenue.tableLangerMen" type="checkbox" class="form-control" id="hasTableLangerMen" name="hasTableLangerMen" required>
+    <input [(ngModel)]="mesiVenue.tableLangerMen" type="checkbox" class="form-control" id="MenTableLangerRequired" name="MenTableLangerRequired" required>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Chaise Haute</label>
+    <input [(ngModel)]="mesiVenue.chaiseHaute" type="checkbox" class="form-control" id="ChaiseHauteRequired" name="ChaiseHauteRequired" required>
+  </div>
+
+  <div class="form-group">
+    <label for="name">WC Enfant</label>
+    <input [(ngModel)]="mesiVenue.wcEnfant" type="checkbox" class="form-control" id="WcEnfantRequired" name="WcEnfantRequired" required>
   </div>
 
   <button (click)="submit()" type="submit" class="btn btn-success">Partagez !</button>

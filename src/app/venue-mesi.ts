@@ -9,6 +9,8 @@ export class VenueMesi {
  tableLangerMen: boolean;
  menuEnfant: boolean;
  espaceJeu: boolean;
+ chaiseHaute: boolean;
+ wcEnfant: boolean;
  yelpVenue: YelpVenue;
 
 }

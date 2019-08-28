@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
     console.log('Display BBNotFriendly: '); console.log(this.displayBBNotFriendly);
     console.log('Display UnknownStatus: '); console.log(this.displayUnknownStatus);
     if (this.inputLocation === this.previousInput) {
-      console.log("recherche identique à la précédentes, pas de requête aux API");
+      console.log('recherche identique à la précédentes, pas de requête aux API');
       this.afterRecherche();
     } else {
       this.recherche(this.inputLocation);
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
   }
 
   afterRecherche() {
-    if(this.mesiVenuesFilter.hasFilters()) {
+    if (this.mesiVenuesFilter.hasFilters()) {
       this.filterVenues();
     } else {
       console.log('Filter is off');
@@ -102,4 +102,5 @@ export class AppComponent implements OnInit {
     this.displayUnknownStatus = false;
     this.inputRecherche();
   }
+
 }

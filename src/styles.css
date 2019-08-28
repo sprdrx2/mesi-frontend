@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Champagne & Limousines";
+  src: url(assets/Fonts/champagne_limousines/ChampagneLimousines.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Champagne & Limousines Bold";
+  src: url(assets/Fonts/champagne_limousines/ChampagneLimousinesBold.ttf) format("truetype");
+}
+
+body{
+  font-family: "Champagne & Limousines";
+
+
+}
