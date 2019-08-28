@@ -13,6 +13,7 @@ export class VenueMesiService {
   private venueMesiApiCompareAddress = this.venueMesiApiAddress + '/venues/compare';
   private venueMesiApiCreateAddress = this.venueMesiApiAddress + '/venue/create';
   private venueMesiApiUpdateAddress = this.venueMesiApiAddress + '/venue/update';
+  private venueAddress = this.venueMesiApiAddress + '/venue';
   mesiVenues;
 
   constructor(private httpClient: HttpClient, private yelpVenueService: YelpService) { }
@@ -38,5 +39,11 @@ export class VenueMesiService {
     }
     console.log('Backend response: '); console.log(newVenue);
     return newVenue;
+  }
+
+  async getVenue(yelp_id: String) {
+    let venueEdit: VenueMesi;
+    await this.httpClient.get(this.venueAddress + '/' + yelp_id).toPromise().then((data : VenueMesi) => venueEdit = data);
+    return venueEdit;    
   }
 }
