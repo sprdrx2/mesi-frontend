@@ -15,6 +15,8 @@ export class VenuePageComponent implements OnInit {
 
   venueMesi: VenueMesi;
 
+  isComputing = true;
+
   constructor(private route: ActivatedRoute, private yelpService: YelpService, private venueMesiService: VenueMesiService) { }
 
   ngOnInit() {
@@ -27,6 +29,9 @@ export class VenuePageComponent implements OnInit {
   }
 
   async rechercheOne(yelp_id) {
+  this.isComputing = true;
   this.venueMesi = await this.venueMesiService.getVenue(yelp_id);
+  this.isComputing = false;
+
   }
 }

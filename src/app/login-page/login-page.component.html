@@ -1,0 +1,13 @@
+<div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+
+<p *ngIf="credentialsTested && !credentialsOK && !isComputing">Authentification impossible, veuillez rééssayer: </p>
+
+<form *ngIf="!isComputing && !credentialsOK" id="login">
+    <label>Addresse e-mail: </label>
+    <input [(ngModel)]="userLogin" type="text" [ngModelOptions]="{standalone: true}" />
+    <label>Mot de passe: </label>
+    <input [(ngModel)]="userPassword" type="password" [ngModelOptions]="{standalone: true}" />
+    <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="testLogin()">Connexion!</button>
+</form>
+
+<p *ngIf="credentialsOK">bienvenue {{ this.userLogin }} !</p>
