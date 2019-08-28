@@ -1,26 +1,4 @@
 <div>
-	<h4>{{ v.yelpVenue.name }}</h4>
-	
-
-	<div *ngIf="v.knownStatus">
-			<ul *ngIf="v.bbFriendly && !displayForm">
-				<li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
-				<li *ngIf="v.tableLanger">Table à langer disponible.</li>
-				<li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
-				<li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
-				<li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
-      </ul>
-      <button *ngIf="v.bbFriendly && !displayForm" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
-      <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
-      </app-mesi-venue-form>
-
-		<div *ngIf="!v.bbFriendly">
-      <p>Ce lieu ne propose pour les enfants ni les parents.</p>
-      <button *ngIf="!displayForm" class="btn btn-secondary" (click)="formDisplay()">Détrompez-nous !</button>
-      <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
-      </app-mesi-venue-form>
-    </div>
-=======
     <h4><a [routerLink]="[ '/venue', v.yelp_id ]">{{ v.yelpVenue.name }}</a></h4>
 
     <div *ngIf="v.knownStatus">
@@ -57,6 +35,8 @@
         </app-mesi-venue-form>
     </div>
 
-    <img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%" />
 
+	<img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%"/><!-- wtf bootstrap -->
+	<p>{{ v.yelpVenue.location.address1 }} {{ v.yelpVenue.location.address2 }} {{ v.yelpVenue.location.address3 }}</p>
+	<p>Tel: {{ v.yelpVenue.phone }}</p>
 </div>
