@@ -3,6 +3,7 @@ import { VenueMesiFilter } from '../venue-mesi-filter';
 import { Router, ActivatedRoute } from '@angular/router';
 import { VenueMesiService } from '../venue-mesi.service';
 
+
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -10,8 +11,7 @@ import { VenueMesiService } from '../venue-mesi.service';
 })
 export class SearchBarComponent implements OnInit {
 
-  mesiVenuesFilter: VenueMesiFilter;
-  inputLocation: String;
+  inputLocation;
   autocompleteOptions = {
     types: [],
     componentRestrictions: { country: 'FR' }
@@ -22,7 +22,6 @@ export class SearchBarComponent implements OnInit {
   constructor(private router: Router, private venueMesiService: VenueMesiService) { }
 
   ngOnInit() {
-    this.mesiVenuesFilter = new VenueMesiFilter;
     this.venueMesiService.isUserLoggued().subscribe(
       (uIsL: boolean) => {
         if(uIsL) { this.isUserLoggued = true; console.log('user connecté'); this.currentUserLogin = this.venueMesiService.getCurrentUserLogin(); }
@@ -40,7 +39,7 @@ export class SearchBarComponent implements OnInit {
     console.log('redirect to signin form');
     this.router.navigate(['/signin']);
   }
-  
+
   logIn() {
     console.log('redirect to login form');
     this.router.navigate(['/login']);
@@ -50,5 +49,11 @@ export class SearchBarComponent implements OnInit {
     console.log('deconnexion');
     this.venueMesiService.logOut();
     this.router.navigate(['welcome']);
+  }
+
+  public onChange(address) {
+    console.log('address'); console.log(address);
+    console.log('formatted_address'); console.log(address['formatted_address']);
+    this.inputLocation = address['formatted_address'];
   }
 }
