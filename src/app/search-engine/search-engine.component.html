@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
 
-<form *ngIf="!isComputing && !zeroResults" id="filters" class="d-none d-md-inline">
+<form *ngIf="!isComputing && !zeroResults && displayBBFriendly" id="filters" class="d-none d-md-inline">
     <input [(ngModel)]="filterEspacePoussetteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
     <label>Espace poussette</label>
     <input [(ngModel)]="filterEspaceJeuRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
