@@ -35,6 +35,8 @@ export class SearchEngineComponent implements OnInit {
   filterMenuEnfantRequired = false;
   filterTableLangerRequired = false;
   filterTableLangerMenRequired = false;
+  filterWcEnfantRequired = false;
+  filterChaiseHauteRequired = false;
 
   filtersAreOn = false;
 
@@ -89,6 +91,8 @@ export class SearchEngineComponent implements OnInit {
     if (this.filterMenuEnfantRequired === true) { console.log('menuEnfant required'); return true;  }
     if (this.filterTableLangerRequired === true) { console.log('tableLanger required'); return true;  }
     if (this.filterTableLangerMenRequired === true) {  console.log('tableLangerMen required'); return true; }
+    if (this.filterChaiseHauteRequired === true) {  console.log('chaiseHaute required'); return true; }
+    if (this.filterWcEnfantRequired === true) {  console.log('wcEnfant required'); return true; }
     return false;
   }
 
@@ -98,6 +102,8 @@ export class SearchEngineComponent implements OnInit {
       if (this.filterMenuEnfantRequired && !v.menuEnfant) { return false; }
       if (this.filterTableLangerRequired && !v.tableLanger) { return false; }
       if (this.filterTableLangerMenRequired && !v.tableLangerMen) { return false; }
+      if (this.filterWcEnfantRequired  && !v.wcEnfant) { return false; }
+      if (this.filterChaiseHauteRequired && !v.chaiseHaute) { return false; }
       return true;
   }
 
@@ -128,6 +134,8 @@ export class SearchEngineComponent implements OnInit {
     this.filterMenuEnfantRequired = false;
     this.filterTableLangerMenRequired = false;
     this.filterTableLangerRequired = false;
+    this.filterChaiseHauteRequired = false;
+    this.filterWcEnfantRequired = false;
     this.filtrer();
   }
 }

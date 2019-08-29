@@ -10,7 +10,12 @@
     <input [(ngModel)]="filterTableLangerRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
     <label>Table à langer ?</label>
     <input [(ngModel)]="filterTableLangerMenRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Table à langer accessible aux hommes ?</label><br />
+    <label>Table à langer accessible aux hommes ?</label>
+    <input [(ngModel)]="filterChaiseHauteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>Chaise haute ?</label>
+    <input [(ngModel)]="filterWcEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>WC enfants ?</label>
+    <br />
     <button (click)="filtrer()">Filtrer</button>
     <button *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
 </form>
