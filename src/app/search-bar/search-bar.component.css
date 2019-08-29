@@ -11,8 +11,10 @@
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
+    width:100%;
+    font-size:0.75rem;
 }
-a{
+#blocBebeBabeezy{
     display:flex;
     flex-direction: row;
 }
@@ -20,4 +22,20 @@ a{
 .btn-secondary{
     border:none;
     background-color:none;
+    margin:2px;
+}
+#bebeAccueil{
+    width:50px;
+    height:60px;
+}
+h1 {
+    vertical-align: center;
+}
+
+@media(min-width:1200px){
+    body{font: size 3em;}
+}
+
+@media(max-width:576px){
+   body{font: size 1vw;}
 }
