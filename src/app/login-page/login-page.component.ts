@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VenueMesiService } from '../venue-mesi.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +16,7 @@ export class LoginPageComponent implements OnInit {
   credentialsTested = false;
   credentialsOK = false;
 
-  constructor(private venueMesiService: VenueMesiService) { }
+  constructor(private venueMesiService: VenueMesiService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,14 +24,18 @@ export class LoginPageComponent implements OnInit {
   async testLogin() {
     let userL = this.userLogin; let userP = this.userPassword;
     this.isComputing = true;
-    await this.venueMesiService.testLogin(userL, userP);
-    if (this.venueMesiService.isUserLoggued()) {
-      console.log('login ok');
-      this.credentialsTested = true; this.credentialsOK = true;
-    } else {
-      console.log('login ko');
-      this.credentialsTested = true; this.credentialsOK = false;
-    }
-    this.isComputing = false;
+    this.venueMesiService.testLogin(userL, userP);
+    this.venueMesiService.isUserLoggued().subscribe(
+      (uIsL: boolean) => {
+        if(uIsL) { this.credentialsTested = true; this.credentialsOK = true; console.log('login component: login ok'); this.router.navigate(['/welcome']); }
+        else  { this.credentialsTested = true; this.credentialsOK = false; console.log('login component: login ko'); }
+        this.isComputing = false;
+      }
+    );
+    this.venueMesiService.isLoginComputing().subscribe(
+      (lIsC: boolean) => {
+        this.isComputing = lIsC;
+      }
+    )
   }
 }

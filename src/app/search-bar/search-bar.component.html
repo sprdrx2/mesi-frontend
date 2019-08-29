@@ -1,3 +1,5 @@
+<div *ngIf="isUserLoggued" id="welcome">Bienvenue {{ currentUserLogin }} !</div>
+
 <nav class="navbar navbar-dark sticky-top bg-dark">
     <a class="navbar-brand" routerLink="/welcome"><img src="/assets/bossBB.png" width="30" height="30" class="d-inline-block align-top" alt=""><span style="color:white">BaBy-MeSi</span></a>
     <form class="form-inline">
@@ -5,6 +7,17 @@
         <span class="d-none d-md-inline">
     <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher!</button>
     </span>
+        <div *ngIf="!isUserLoggued" id="loginButtons">
+            <div id="signin">
+                <button class="btn btn-secondary my-2 my-sm-0" (click)="signIn()">Créer Compte</button>
+            </div>
+            <div id="signin">
+                <button class="btn btn-secondary my-2 my-sm-0" (click)="logIn()">Connexion</button>
+            </div>
+        </div>
+        <div *ngIf="isUserLoggued">
+            <button class="btn btn-secondary my-2 my-sm-0" (click)="logOut()">Déconnexion</button>
+        </div>
     </form>
 
     <form id="filters" class="d-none d-md-inline">

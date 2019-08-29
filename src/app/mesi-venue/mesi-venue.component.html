@@ -16,7 +16,7 @@
 
         <button *ngIf="v.bbFriendly && !displayForm" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
 
-        <app-mesi-venue-form *ngIf="displayForm" [mesiVenue]="v">
+        <app-mesi-venue-form *ngIf="displayForm && isUserLoggued" [mesiVenue]="v">
         </app-mesi-venue-form>
 
         <div *ngIf="!v.bbFriendly">
@@ -35,8 +35,12 @@
         </app-mesi-venue-form>
     </div>
 
-	<img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%"/><!-- wtf bootstrap -->
-	<div class="fb-like" data-href="https://google.com" data-width="500px" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false">
-	</div>
+    <div *ngIf="displayForm && !isUserLoggued">
+        <p>Connectez vous pour apporter des informations</p>
+        <app-login-page></app-login-page>
+    </div>
+
+    <img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%" />
+    <a href="{{ venueFBShareLink }}">Partagez ce lieu sur Facebook !</a>
 
 </div>
