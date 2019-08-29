@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
 
-<form *ngIf="!isComputing" id="filters" class="d-none d-md-inline">
+<form *ngIf="!isComputing && !zeroResults" id="filters" class="d-none d-md-inline">
     <input [(ngModel)]="filterEspacePoussetteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
     <label>Espace poussette ?</label>
     <input [(ngModel)]="filterEspaceJeuRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
@@ -20,11 +20,20 @@
     <button *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
 </form>
 
-<div *ngIf="!isComputing">
+<div *ngIf="!isComputing && mesiVenuesBBFriendlyFiltered.count > 0">
 <button *ngIf="!displayBBNotFriendly"  (click)="afficherMauvaisEleves()">Voir les endroits non compatibles avec bébé.</button>
 <button *ngIf="!displayStatusUnknown" (click)="modeRecensement()">Aidez nous recenser les environs !</button>
 <button *ngIf="!displayBBFriendly" (click)="retourResultats()">Retour au resultats.</button>
 </div>
+
+<p *ngIf="!isComputing && zeroResults">
+    Aucun résultats dans ces environs !<br />
+    Voici les lieux pour lequels nous n'avons pas d'informations, aidez-nous completer nos informations !
+</p>
+
+<p *ngIf="!isComputing && zeroResultsAfterFiltre">
+    Aucun résultat ne correspond aux filtres que vous avez entrées, enlevez un filtre pour élargir votre recherche !
+</p>
 
 <app-venue-map *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus"   [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
     [displayUnknownStatus]="displayStatusUnknown">

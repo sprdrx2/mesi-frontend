@@ -28,6 +28,8 @@ export class SearchEngineComponent implements OnInit {
   mesiVenuesBBNotFriendly: Array<VenueMesi>;
   mesiVenuesUnknownStatus: Array<VenueMesi>;
   mesiBackendResponse: MesiBackendResponse;
+  zeroResults = false;
+  zeroResultsAfterFiltre = false;
 
   filterEspaceJeuRequired = false;
   filterEspacePoussetteRequired = false;
@@ -80,6 +82,13 @@ export class SearchEngineComponent implements OnInit {
     this.mesiVenuesBBNotFriendly = this.mesiBackendResponse.bbNotFriendlyVenues;
     this.mesiVenuesUnknownStatus = this.mesiBackendResponse.unknownStatusVenues;
     this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesBBFriendlyUnfiltered;
+    if (!(this.mesiVenuesBBFriendlyFiltered.length > 0)) {
+      console.log('aucun resultat');
+      this.zeroResults = true;
+      this.modeRecensement();
+    } else {
+      this.zeroResults = false;
+    }
     this.isComputing = false;
   }
 
@@ -117,7 +126,7 @@ export class SearchEngineComponent implements OnInit {
   }
 
   filtrer() {
-    if(this.isFilterOn()) {
+    if (this.isFilterOn()) {
       console.log('filters are on');
       this.filtersAreOn = true;
       this.mesiVenuesBBFriendlyFiltered = this.venuesFilter(this.mesiVenuesBBFriendlyUnfiltered);
@@ -125,7 +134,14 @@ export class SearchEngineComponent implements OnInit {
       console.log('filters are off');
       this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesBBFriendlyUnfiltered;
     }
+    if (!(this.mesiVenuesBBFriendlyFiltered.length > 0)) {
+      console.log('aucun resultat');
+      this.zeroResultsAfterFiltre = true;
+    } else {
+      this.zeroResultsAfterFiltre = false;
+    }
   }
+
 
   viderFiltres() {
     this.filterEspaceJeuRequired = false;
