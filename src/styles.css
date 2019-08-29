@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 .pac-container { z-index: 1021; }
+@font-face {
+    font-family: "Champagne & Limousines";
+    src: url(assets/Fonts/champagne_limousines/ChampagneLimousines.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Champagne & Limousines Bold";
+    src: url(assets/Fonts/champagne_limousines/ChampagneLimousinesBold.ttf) format("truetype");
+  }
+
+    body{
+    font-family: "Champagne & Limousines"!important;
+    background-color:blue;
+  }
+
+  .btn-secondary{
+    background-color:#11808C;
+    border-color:#11808C;
+  }
+  .container{
+    font-family: "Champagne & Limousines"!important; 
+  } 

@@ -2,19 +2,19 @@
 
 <form *ngIf="!isComputing && !zeroResults" id="filters" class="d-none d-md-inline">
     <input [(ngModel)]="filterEspacePoussetteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Espace poussette ?</label>
+    <label>Espace poussette</label>
     <input [(ngModel)]="filterEspaceJeuRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Espace jeu ?</label>
+    <label>Espace jeu</label>
     <input [(ngModel)]="filterMenuEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Menu enfant ?</label>
+    <label>Menu enfant</label>
     <input [(ngModel)]="filterTableLangerRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Table à langer ?</label>
+    <label>Table à langer</label>
     <input [(ngModel)]="filterTableLangerMenRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Table à langer accessible aux hommes ?</label>
+    <label>Table à langer accessible aux hommes</label>
     <input [(ngModel)]="filterChaiseHauteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Chaise haute ?</label>
+    <label>Chaise haute</label>
     <input [(ngModel)]="filterWcEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>WC enfants ?</label>
+    <label>WC enfants</label>
     <br />
     <button (click)="filtrer()">Filtrer</button>
     <button *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
