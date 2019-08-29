@@ -20,15 +20,14 @@
     <button *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
 </form>
 
-<div *ngIf="!isComputing && mesiVenuesBBFriendlyFiltered.count > 0">
-<button *ngIf="!displayBBNotFriendly"  (click)="afficherMauvaisEleves()">Voir les endroits non compatibles avec bébé.</button>
-<button *ngIf="!displayStatusUnknown" (click)="modeRecensement()">Aidez nous recenser les environs !</button>
-<button *ngIf="!displayBBFriendly" (click)="retourResultats()">Retour au resultats.</button>
+<div *ngIf="!isComputing && !zeroResults">
+    <button *ngIf="!displayBBNotFriendly" (click)="afficherMauvaisEleves()">Voir les endroits non compatibles avec bébé.</button>
+    <button *ngIf="!displayStatusUnknown" (click)="modeRecensement()">Aidez nous recenser les environs !</button>
+    <button *ngIf="!displayBBFriendly" (click)="retourResultats()">Retour au resultats.</button>
 </div>
 
 <p *ngIf="!isComputing && zeroResults">
-    Aucun résultats dans ces environs !<br />
-    Voici les lieux pour lequels nous n'avons pas d'informations, aidez-nous completer nos informations !
+    Aucun résultats dans ces environs !<br /> Voici les lieux pour lequels nous n'avons pas d'informations, aidez-nous completer nos informations !
 </p>
 
 <p *ngIf="!isComputing && zeroResultsAfterFiltre">
