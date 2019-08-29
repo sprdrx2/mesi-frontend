@@ -1,5 +1,25 @@
 <div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/loading.gif" alt="computing..." /></div>
 
+<form *ngIf="!isComputing" id="filters" class="d-none d-md-inline">
+    <input [(ngModel)]="filterEspacePoussetteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>Espace poussette ?</label>
+    <input [(ngModel)]="filterEspaceJeuRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>Espace jeu ?</label>
+    <input [(ngModel)]="filterMenuEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>Menu enfant ?</label>
+    <input [(ngModel)]="filterTableLangerRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>Table à langer ?</label>
+    <input [(ngModel)]="filterTableLangerMenRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>Table à langer accessible aux hommes ?</label>
+    <input [(ngModel)]="filterChaiseHauteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>Chaise haute ?</label>
+    <input [(ngModel)]="filterWcEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <label>WC enfants ?</label>
+    <br />
+    <button (click)="filtrer()">Filtrer</button>
+    <button *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
+</form>
+
 <app-venue-map *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus"   [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
     [displayUnknownStatus]="displayUnknownStatus">
 </app-venue-map>

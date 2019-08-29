@@ -17,7 +17,7 @@ import { MesiBackendResponse } from '../mesi-backend-response';
 export class SearchEngineComponent implements OnInit {
 
   searchString: String;
-  mesiVenuesFilter: VenueMesiFilter;
+  //mesiVenuesFilter: VenueMesiFilter;
   isComputing: boolean;
   previousInput: String;
   displayBBNotFriendly: boolean;
@@ -30,27 +30,30 @@ export class SearchEngineComponent implements OnInit {
   mesiVenuesUnknownStatus: Array<VenueMesi>;
   mesiBackendResponse: MesiBackendResponse;
 
+  filterEspaceJeuRequired = false;
+  filterEspacePoussetteRequired = false;
+  filterMenuEnfantRequired = false;
+  filterTableLangerRequired = false;
+  filterTableLangerMenRequired = false;
+  filterWcEnfantRequired = false;
+  filterChaiseHauteRequired = false;
+
+  filtersAreOn = false;
+
   constructor(private route: ActivatedRoute, private yelpService: YelpService, private venueMesiService: VenueMesiService) { }
 
-  ngOnInit() {
-    this.mesiVenuesFilter = new VenueMesiFilter;
+  ngOnInit() 
+  {
+    this.previousInput = '';
     this.route.params.subscribe(
       params => {
-        this.previousInput = '';
         this.displayBBNotFriendly = false;
         this.displayUnknownStatus = false;
         this.displayBBFriendly = true;
         this.isComputing = true;
         console.log('Search Parameters: '); console.log(params);
         this.searchString = params['searchString'];
-        this.mesiVenuesFilter.reset();
-        this.mesiVenuesFilter.hasEspaceJeu        = params['filterEspaceJeuRequired'];
-        this.mesiVenuesFilter.hasEspacePoussette  = params['filterEspacePoussetteRequired'];
-        this.mesiVenuesFilter.hasMenuEnfant       = params['filterMenuEnfantRequired'];
-        this.mesiVenuesFilter.hasTableLanger      = params['filterTableLangerRequired'];
-        this.mesiVenuesFilter.hasTableLangerMen   = params['filterTableLangerMenRequired'];
         console.log('searchString: '); console.log(this.searchString);
-        console.log('mesiVenuesFilter: '); console.log(this.mesiVenuesFilter);
         this.inputRecherche();
       }
     );
@@ -62,12 +65,13 @@ export class SearchEngineComponent implements OnInit {
     console.log('searchString: '); console.log(this.searchString);
     console.log('Display BBNotFriendly: '); console.log(this.displayBBNotFriendly);
     console.log('Display UnknownStatus: '); console.log(this.displayUnknownStatus);
-    if (this.searchString === this.previousInput) {
+    /*if (this.searchString === this.previousInput) {
       console.log("recherche identique à la précédentes, pas de requête aux API");
       this.afterRecherche();
     } else {
       this.recherche(this.searchString);
-    }
+    }*/
+    this.recherche(this.searchString);
     this.previousInput = this.searchString;
   }
 
@@ -76,22 +80,62 @@ export class SearchEngineComponent implements OnInit {
     this.mesiVenuesBBFriendlyUnfiltered = this.mesiBackendResponse.bbFriendlyVenues;
     this.mesiVenuesBBNotFriendly = this.mesiBackendResponse.bbNotFriendlyVenues;
     this.mesiVenuesUnknownStatus = this.mesiBackendResponse.unknownStatusVenues;
-    this.afterRecherche();
-  }
-
-  afterRecherche() {
-    if(this.mesiVenuesFilter.hasFilters()) {
-      this.filterVenues();
-    } else {
-      console.log('Filter is off');
-      this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesBBFriendlyUnfiltered;
-    }
+    this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesBBFriendlyUnfiltered;
     this.isComputing = false;
   }
 
-  filterVenues() {
-      console.log('Filter is on:'); console.log(this.mesiVenuesFilter);
-      this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesFilter.venuesFilter(this.mesiVenuesBBFriendlyUnfiltered);
-      console.log('Filtered: '); console.log(this.mesiVenuesBBFriendlyFiltered);
+
+  isFilterOn(): boolean {
+    if (this.filterEspaceJeuRequired === true) { console.log('espaceJeu required'); return true;  }
+    if (this.filterEspacePoussetteRequired === true) { console.log('espacePoussette required'); return true;  }
+    if (this.filterMenuEnfantRequired === true) { console.log('menuEnfant required'); return true;  }
+    if (this.filterTableLangerRequired === true) { console.log('tableLanger required'); return true;  }
+    if (this.filterTableLangerMenRequired === true) {  console.log('tableLangerMen required'); return true; }
+    if (this.filterChaiseHauteRequired === true) {  console.log('chaiseHaute required'); return true; }
+    if (this.filterWcEnfantRequired === true) {  console.log('wcEnfant required'); return true; }
+    return false;
+  }
+
+  venueCompliesToFilters(v: VenueMesi): boolean {
+      if (this.filterEspaceJeuRequired && !v.espaceJeu) { return false; }
+      if (this.filterEspacePoussetteRequired && !v.espacePoussette) { return false; }
+      if (this.filterMenuEnfantRequired && !v.menuEnfant) { return false; }
+      if (this.filterTableLangerRequired && !v.tableLanger) { return false; }
+      if (this.filterTableLangerMenRequired && !v.tableLangerMen) { return false; }
+      if (this.filterWcEnfantRequired  && !v.wcEnfant) { return false; }
+      if (this.filterChaiseHauteRequired && !v.chaiseHaute) { return false; }
+      return true;
+  }
+
+  venuesFilter(venues: Array<VenueMesi>): Array<VenueMesi> {
+    let filteredVenues: Array<VenueMesi> = [];
+    for (const venue of venues) {
+      if (this.venueCompliesToFilters(venue)) {
+          filteredVenues = filteredVenues.concat(venue);
+      }
+    }
+    return filteredVenues;
+  }
+
+  filtrer() {
+    if(this.isFilterOn()) {
+      console.log('filters are on');
+      this.filtersAreOn = true;
+      this.mesiVenuesBBFriendlyFiltered = this.venuesFilter(this.mesiVenuesBBFriendlyUnfiltered);
+    } else {
+      console.log('filters are off');
+      this.mesiVenuesBBFriendlyFiltered = this.mesiVenuesBBFriendlyUnfiltered;
+    }
+  }
+
+  viderFiltres() {
+    this.filterEspaceJeuRequired = false;
+    this.filterEspacePoussetteRequired = false;
+    this.filterMenuEnfantRequired = false;
+    this.filterTableLangerMenRequired = false;
+    this.filterTableLangerRequired = false;
+    this.filterChaiseHauteRequired = false;
+    this.filterWcEnfantRequired = false;
+    this.filtrer();
   }
 }

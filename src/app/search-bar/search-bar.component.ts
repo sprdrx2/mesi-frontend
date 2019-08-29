@@ -33,13 +33,7 @@ export class SearchBarComponent implements OnInit {
 
   inputRecherche() {
     console.log('inputLocation: '); console.log(this.inputLocation);
-    this.router.navigate(['/search', {  searchString: this.inputLocation,
-                                        filterEspacePoussetteRequired: this.mesiVenuesFilter.hasEspacePoussette,
-                                        filterEspaceJeuRequired: this.mesiVenuesFilter.hasEspaceJeu,
-                                        filterMenuEnfantRequired: this.mesiVenuesFilter.hasMenuEnfant,
-                                        filterTableLangerRequired: this.mesiVenuesFilter.hasTableLanger,
-                                        filterTableLangerMenRequired: this.mesiVenuesFilter.hasTableLangerMen
-                                      } ]);
+    this.router.navigate(['/search', {  searchString: this.inputLocation } ]);
   }
 
   signIn() {
