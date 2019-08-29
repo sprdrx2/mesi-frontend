@@ -2,4 +2,23 @@
 
 <div *ngIf="!isComputing">
     <app-mesi-venue [v]="venueMesi"></app-mesi-venue>
+
+    <div id="commentaires">
+    <p *ngFor="let c of venueMesi.commentaires">
+        le {{ c.date }}, {{ c.author }} a dit:
+        <q>
+            {{ c.commentaire }}
+        </q>
+    </p>
+    </div>
+
+    <p *ngIf="commentIsPosted">Votre commentaire a bien été enregistré.</p>
+
+    <form *ngIf="!isPostingComment">
+            <div class="form-group">
+              <label for="commentaire">Commentaire</label>
+              <input [(ngModel)]="newComment" type="text" class="form-control" id="commentaire" name="commentaire" required>
+            </div>
+            <button (click)="comment()" type="button" class="btn btn-success">Commenter</button>
+          </form>
 </div>

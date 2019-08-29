@@ -7,6 +7,8 @@ import { MesiBackendResponse } from './mesi-backend-response';
 import { Router } from '@angular/router';
 import { of, BehaviorSubject, Observable } from 'rxjs';
 import { UserMesi } from './user-mesi';
+import { MesiCommentaire } from './mesi-commentaire';
+
 
 
 @Injectable({
@@ -21,6 +23,8 @@ export class VenueMesiService {
   private venueMesiApiTestLoginAddress = this.venueMesiApiAddress + '/user/testlogin';
   private userMesiApiCreateAddress = this.venueMesiApiAddress + '/user/signin';
   private venueAddress = this.venueMesiApiAddress + '/venue';
+  private commentCreateAddress = this.venueMesiApiAddress + '/addcomment';
+
 
   private userPassword: string;
   private userLogin: string;
@@ -103,6 +107,15 @@ export class VenueMesiService {
     this.updatedUserIsLoggued.next(true);
     this.currentUserLogin = user.email;
     return newUser;
+  }
+
+  async createCommentaire(comment: string, yelp_id: string) {
+    let backendR: string;
+    let request = new Object;
+    request["commentaire"] = comment;
+    console.log("soumission:"); console.log(request);
+    await this.httpClient.post(this.commentCreateAddress + '/' + yelp_id, request, { headers: this.currentUserHttpHeaders }).toPromise().then((data: string) => backendR = data);
+    console.log('Backend response: '); console.log(backendR);
   }
 
   logOut() {
