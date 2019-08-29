@@ -9,15 +9,3 @@
     src: url(assets/Fonts/champagne_limousines/ChampagneLimousinesBold.ttf) format("truetype");
   }
   
-    body{
-    font-family: "Champagne & Limousines"!important;
-    background-color:blue;
-  }
-  
-  .btn-secondary{
-    background-color:#11808C;
-    border-color:#11808C;
-  }
-  .container{
-    font-family: "Champagne & Limousines"!important; 
-  }

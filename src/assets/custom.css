@@ -1,0 +1,18 @@
+.btn-secondary{
+    background-color:#11808C;
+    border-color:#11808C;
+  }
+
+  body{
+    font-family: "Champagne & Limousines"!important; 
+    background-color:white;
+    color:#11808C;
+  }
+
+  /* .container{
+      background-color:#D7D7D9;
+  } */
+.navbar{
+    background-color:#D7D7D9;
+    margin:1%;
+}
