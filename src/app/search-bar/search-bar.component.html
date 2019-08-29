@@ -1,37 +1,52 @@
 <div *ngIf="isUserLoggued" id="welcome">Bienvenue {{ currentUserLogin }} !</div>
 
 <nav class="navbar navbar-dark sticky-top ">
-    <div id="duoBoutons" class="d-none d-md-inline">
+    
 
-        <div *ngIf="!isUserLoggued" id="loginButtons">
+        <div id="duoBoutons"  >
+            <div *ngIf="!isUserLoggued">
+                    <button class="btn btn-secondary my-2 my-sm-0" (click)="signIn()">Créer Compte</button>
+                    <button class="btn btn-secondary my-2 my-sm-0" (click)="logIn()">Connexion</button>
 
-            <button class="btn btn-secondary my-2 my-sm-0" (click)="signIn()">Créer Compte</button>
-            <button class="btn btn-secondary my-2 my-sm-0" (click)="logIn()">Connexion</button>
+            </div>
+            
+            <div *ngIf="isUserLoggued">
+                    <button class="btn btn-secondary my-2 my-sm-0" (click)="logOut()">Déconnexion</button>
+            </div>
         </div>
-    </div>
+   
     <div>
 
     </div>
-    <a class="navbar-brand" routerLink="/welcome">
-        <img src="/assets/baby_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        <span style="color:#11808C">Babeezy</span>
-    </a>
+
+    <div id="blocBebeBarreRecherche">
+        
+    </div>
+    <div id="blocBebeBabeezy">
+            <a class="navbar-brand" routerLink="/welcome">
+                <img id="bebeAccueil" src="/assets/baby_logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                
+            </a>
+            <h1 style="color:#11808C">Babeezy</h1>
+    </div>
+   
     <form class="form-inline">
 
 
         <div id="blocBarreBoutonRecherche">
-            <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse" aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}" ngx-google-places-autocomplete [options]="autocompleteOptions" #placesRef="ngx-places" (onAddressChange)="onChange($event)"/>
+            <input class="form-control mr-sm-2" type="search" placeholder="Entrez une ville ou une addresse"
+                aria-label="Search" [(ngModel)]="inputLocation" [ngModelOptions]="{standalone: true}"
+                ngx-google-places-autocomplete [options]="autocompleteOptions" #placesRef="ngx-places" (onAddressChange)="onChange($event)"
+                />
             <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher</button>
         </div>
 
 
 
-        <div *ngIf="isUserLoggued">
-            <button class="btn btn-secondary my-2 my-sm-0" (click)="logOut()">Déconnexion</button>
-        </div>
+        
     </form>
 
-    <span class="d-inline d-md-none">
+    <!-- <span class="d-inline d-md-none">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="inputRecherche()">Chercher</button>
-    </span>
+    </span> -->
 </nav>
