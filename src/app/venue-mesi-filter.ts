@@ -1,6 +1,7 @@
 import { VenueMesi } from './venue-mesi';
 
 export class VenueMesiFilter {
+  
     hasEspacePoussette: boolean;
     hasTableLanger: boolean;
     hasTableLangerMen: boolean;
@@ -19,7 +20,6 @@ export class VenueMesiFilter {
         this.hasEspaceJeu = false;
     }
 
-
     venueComplies(venue: VenueMesi): boolean {
       if (
         (this.hasEspaceJeu && !(venue.espaceJeu))
@@ -32,7 +32,8 @@ export class VenueMesiFilter {
     }
 
     venuesFilter(venues: Array<VenueMesi>): Array<VenueMesi> {
-      if (!this.hasFilters()) { return venues; }
+      //if (!this.hasFilters()) { console.log('Filter is off'); return venues; }
+      //console.log('Filter is on');
       let filteredVenues: Array<VenueMesi> = [];
       for (const venue of venues) {
         if (this.venueComplies(venue)) {
@@ -43,18 +44,13 @@ export class VenueMesiFilter {
     }
 
     hasFilters(): boolean {
-      /*if (
-        this.hasEspaceJeu || this.hasEspacePoussette ||
-        this.hasMenuEnfant ||
-        this.hasTableLanger || this.hasTableLangerMen
-        )
-        {
-          return true;
-        }
-        else   {
-           return false;
-        }*/
-        return false;
+      if (this.hasEspaceJeu === true) { console.log('f'); return true; }
+      if (this.hasEspacePoussette === true) { console.log('f'); return true; }
+      if (this.hasMenuEnfant === true) { console.log('f'); return true; }
+      if (this.hasTableLanger === true) { console.log('f'); return true; }
+      if (this.hasTableLangerMen === true) { console.log('f'); return true; }
+      console.log('pas f');
+      return false;
     }
 
 }
