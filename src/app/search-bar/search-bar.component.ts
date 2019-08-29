@@ -52,7 +52,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   public onChange(address) {
-    console.log('address'); console.log(address);
+    console.log('address'); console.log(address); 
     console.log('formatted_address'); console.log(address['formatted_address']);
     this.inputLocation = address['formatted_address'];
   }

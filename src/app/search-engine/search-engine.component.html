@@ -20,10 +20,16 @@
     <button *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
 </form>
 
+<div *ngIf="!isComputing">
+<button *ngIf="!displayBBNotFriendly"  (click)="afficherMauvaisEleves()">Voir les endroits non compatibles avec bébé.</button>
+<button *ngIf="!displayStatusUnknown" (click)="modeRecensement()">Aidez nous recenser les environs !</button>
+<button *ngIf="!displayBBFriendly" (click)="retourResultats()">Retour au resultats.</button>
+</div>
+
 <app-venue-map *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus"   [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
-    [displayUnknownStatus]="displayUnknownStatus">
+    [displayUnknownStatus]="displayStatusUnknown">
 </app-venue-map>
 
 <app-venue-list *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus" [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
-    [displayUnknownStatus]="displayUnknownStatus">
+    [displayUnknownStatus]="displayStatusUnknown">
 </app-venue-list>

@@ -17,11 +17,10 @@ import { MesiBackendResponse } from '../mesi-backend-response';
 export class SearchEngineComponent implements OnInit {
 
   searchString: String;
-  //mesiVenuesFilter: VenueMesiFilter;
   isComputing: boolean;
   previousInput: String;
   displayBBNotFriendly: boolean;
-  displayUnknownStatus: boolean;
+  displayStatusUnknown: boolean;
   displayBBFriendly: boolean;
   yelpVenues: Array<YelpVenue>;
   mesiVenuesBBFriendlyFiltered: Array<VenueMesi>;
@@ -48,7 +47,7 @@ export class SearchEngineComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         this.displayBBNotFriendly = false;
-        this.displayUnknownStatus = false;
+        this.displayStatusUnknown = false;
         this.displayBBFriendly = true;
         this.isComputing = true;
         console.log('Search Parameters: '); console.log(params);
@@ -64,7 +63,7 @@ export class SearchEngineComponent implements OnInit {
     console.log('previousInput: '); console.log(this.previousInput);
     console.log('searchString: '); console.log(this.searchString);
     console.log('Display BBNotFriendly: '); console.log(this.displayBBNotFriendly);
-    console.log('Display UnknownStatus: '); console.log(this.displayUnknownStatus);
+    console.log('Display UnknownStatus: '); console.log(this.displayStatusUnknown);
     /*if (this.searchString === this.previousInput) {
       console.log("recherche identique à la précédentes, pas de requête aux API");
       this.afterRecherche();
@@ -137,5 +136,21 @@ export class SearchEngineComponent implements OnInit {
     this.filterChaiseHauteRequired = false;
     this.filterWcEnfantRequired = false;
     this.filtrer();
+  }
+
+  modeRecensement() {
+    this.displayBBFriendly = false; 
+    this.displayStatusUnknown = true;
+  }
+
+  afficherMauvaisEleves() {
+    this.displayBBFriendly = false;
+    this.displayBBNotFriendly = true;
+  }
+  
+  retourResultats() {
+    this.displayBBNotFriendly = false;
+    this.displayStatusUnknown = false;
+    this.displayBBFriendly = true;
   }
 }
