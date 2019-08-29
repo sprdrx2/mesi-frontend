@@ -4,19 +4,20 @@
     color:#11808C;
     display:flex;
     flex-direction:column;
+    justify-content: space-around;
     padding: 1%;
 }
 #duoBoutons{
     display:flex;
     flex-direction: row;
-    align-self: right;
+    justify-content: flex-end;
 }
 a{
     display:flex;
     flex-direction: row;
 }
 
-.btn{
+.btn-secondary{
     border:none;
     background-color:none;
 }

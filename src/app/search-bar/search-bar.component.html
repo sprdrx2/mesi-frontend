@@ -1,14 +1,20 @@
 <div *ngIf="isUserLoggued" id="welcome">Bienvenue {{ currentUserLogin }} !</div>
 
 <nav class="navbar navbar-dark sticky-top ">
-    <div id="duoBoutons" class="d-none d-md-inline">
+    
 
-        <div *ngIf="!isUserLoggued" id="loginButtons">
+        <div id="duoBoutons"  >
+            <div *ngIf="!isUserLoggued">
+                    <button class="btn btn-secondary my-2 my-sm-0" (click)="signIn()">Créer Compte</button>
+                    <button class="btn btn-secondary my-2 my-sm-0" (click)="logIn()">Connexion</button>
 
-            <button class="btn btn-secondary my-2 my-sm-0" (click)="signIn()">Créer Compte</button>
-            <button class="btn btn-secondary my-2 my-sm-0" (click)="logIn()">Connexion</button>
+            </div>
+            
+            <div *ngIf="isUserLoggued">
+                    <button class="btn btn-secondary my-2 my-sm-0" (click)="logOut()">Déconnexion</button>
+            </div>
         </div>
-    </div>
+   
     <div>
 
     </div>
@@ -27,9 +33,7 @@
 
 
 
-        <div *ngIf="isUserLoggued">
-            <button class="btn btn-secondary my-2 my-sm-0" (click)="logOut()">Déconnexion</button>
-        </div>
+        
     </form>
 
     <span class="d-inline d-md-none">
