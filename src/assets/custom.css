@@ -14,5 +14,14 @@
   } */
 .navbar{
     background-color:#D7D7D9;
-    margin:1%;
+    margin-top:1%;
+    margin-bottom:1%;
 }
+
+
+#blocFacebook{
+  margin:20%;
+  text-align:center;
+
+}
+

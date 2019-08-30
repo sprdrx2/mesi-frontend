@@ -27,11 +27,11 @@
 </div>
 
 <p *ngIf="!isComputing && zeroResults">
-    Aucun résultats dans ces environs !<br /> Voici les lieux pour lequels nous n'avons pas d'informations, aidez-nous completer nos informations !
+    Aucun résultats dans ces environs !<br /> Voici les lieux pour lequels nous n'avons pas d'information, aidez-nous completer nos informations !
 </p>
 
 <p *ngIf="!isComputing && zeroResultsAfterFiltre">
-    Aucun résultat ne correspond aux filtres que vous avez entrées, enlevez un filtre pour élargir votre recherche !
+    Aucun résultat ne correspond aux filtres que vous avez entrés, enlevez un filtre pour élargir votre recherche !
 </p>
 
 <app-venue-map *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus"   [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"

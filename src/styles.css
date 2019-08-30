@@ -13,3 +13,21 @@
     font-family: "Champagne & Limousines Bold";
     src: url(assets/Fonts/champagne_limousines/ChampagneLimousinesBold.ttf) format("truetype");
 }
+
+#blocFacebook{
+  display:flex;
+  flex-direction: row;
+  margin: auto;
+
+}
+
+#containerBebeezy{
+
+  margin : auto;
+}
+
+footer{
+ background-color:#D7D7D9;
+  border:25px solid white;
+  border-radius: 25px;
+}

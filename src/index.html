@@ -1,5 +1,6 @@
 <!doctype html>
-<lang="en">
+
+<html lang="en">
 
     <head>
         <meta charset="utf-8">
@@ -18,16 +19,40 @@
     </head>
 
     <body>
+
+    <header>
+      <app-search-bar></app-search-bar>
+
+    </header>
+
+      <div id="containerBebeezy">
         <app-root>
 
         </app-root>
 
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v4.0"></script>
+
+
+
+
+      </div>
+
+    <footer>
+
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v4.0"></script>
+
+      <div id="blocFacebook" class="fb-like"
+           data-href="https:/bb.perdrix.xyz"
+           data-width=""
+           data-layout="button"
+           data-action="like"
+           data-size="small"
+           data-show-faces="true"
+           data-share="true">
+      </div>
+    </footer>
+
     </body>
 
-    <div>Passez le mot !
-        <div class="fb-like" data-href="https:/bb.perdrix.xyz" data-width="" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-    </div>
+
 
     </html>

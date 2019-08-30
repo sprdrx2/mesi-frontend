@@ -2,12 +2,25 @@
 
 <p *ngIf="credentialsTested && !credentialsOK && !isComputing">Authentification impossible, veuillez rééssayer: </p>
 
-<form *ngIf="!isComputing && !credentialsOK" id="login">
-    <label>Addresse e-mail: </label>
-    <input [(ngModel)]="userLogin" type="text" [ngModelOptions]="{standalone: true}" />
-    <label>Mot de passe: </label>
-    <input [(ngModel)]="userPassword" type="password" [ngModelOptions]="{standalone: true}" />
-    <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="testLogin()">Connexion!</button>
-</form>
+
+<div  class="form-group">
+
+  <form id="login" class="form-horizontal"  *ngIf="!isComputing && !credentialsOK" >
+      <div class="form-group">
+          <label>Identifiant : </label>
+          <input class="form-control"[(ngModel)]="userLogin" type="text" [ngModelOptions]="{standalone: true}" />
+
+      </div>
+
+    <div class="form-group">
+      <label>Mot de passe : </label>
+      <input class="form-control" [(ngModel)]="userPassword" type="password" [ngModelOptions]="{standalone: true}" />
+    </div>
+
+    <button id="connexion" class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="testLogin()">Connexion</button>
+  </form>
+
+</div>
+
 
 <p *ngIf="credentialsOK">bienvenue {{ this.userLogin }} !</p>
