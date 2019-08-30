@@ -1,48 +1,48 @@
 <div>
-  <h4><a [routerLink]="[ '/venue', v.yelp_id ]">{{ v.yelpVenue.name }}</a></h4>
+    <h4><a [routerLink]="[ '/venue', v.yelp_id ]">{{ v.yelpVenue.name }}</a></h4>
 
-  <div *ngIf="v.knownStatus">
-    <ul *ngIf="v.bbFriendly && !displayForm">
-      <li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
-      <li *ngIf="v.tableLanger">Table à langer disponible.</li>
-      <li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
-      <li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
-      <li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
-      <li *ngIf="v.chaiseHaute">Chaise haute disponible.</li>
-      <li *ngIf="v.wcEnfant">WC enfant disponible.</li>
-    </ul>
+    <div *ngIf="v.knownStatus">
+        <ul *ngIf="v.bbFriendly && !displayForm">
+            <li *ngIf="v.espacePoussette">Espace poussette disponible.</li>
+            <li *ngIf="v.tableLanger">Table à langer disponible.</li>
+            <li *ngIf="v.tableLangerMen">Table à langer accessible aux hommes.</li>
+            <li *ngIf="v.menuEnfant">Menu enfant correct disponible.</li>
+            <li *ngIf="v.espaceJeu">Espace jeu disponible.</li>
+            <li *ngIf="v.chaiseHaute">Chaise haute disponible.</li>
+            <li *ngIf="v.wcEnfant">WC enfant disponible.</li>
+        </ul>
 
-    <!-- wtf bootstrap -->
-    <p>{{ v.yelpVenue.location.address1 }} {{ v.yelpVenue.location.address2 }} {{ v.yelpVenue.location.address3 }}</p>
-    <p>Tel: {{ v.yelpVenue.phone }}</p>
+        <!-- wtf bootstrap -->
+        <p>{{ v.yelpVenue.location.address1 }} {{ v.yelpVenue.location.address2 }} {{ v.yelpVenue.location.address3 }}</p>
+        <p>Tel: {{ v.yelpVenue.phone }}</p>
 
-    <button *ngIf="v.bbFriendly && !displayForm && displayForms" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
+        <button *ngIf="v.bbFriendly && !displayForm && displayForms" class="btn btn-secondary" (click)="formDisplay()">D'autres informations ?</button>
 
-    <app-mesi-venue-form *ngIf="v.bbFriendly && displayForms && displayForm && isUserLoggued" [mesiVenue]="v">
-    </app-mesi-venue-form>
+        <app-mesi-venue-form *ngIf="v.bbFriendly && displayForms && displayForm && isUserLoggued" [mesiVenue]="v">
+        </app-mesi-venue-form>
 
-    <div *ngIf="!v.bbFriendly">
-      <p>Ce lieu ne propose pour les enfants ni les parents.</p>
-      <button *ngIf="!displayForm && displayForms" class="btn btn-secondary" (click)="formDisplay()">Détrompez-nous !</button>
-      <app-mesi-venue-form *ngIf="displayForm && displayForms" [mesiVenue]="v">
-      </app-mesi-venue-form>
+        <div *ngIf="!v.bbFriendly">
+            <p>Ce lieu ne propose pour les enfants ni les parents.</p>
+            <button *ngIf="!displayForm && displayForms" class="btn btn-secondary" (click)="formDisplay()">Détrompez-nous !</button>
+            <app-mesi-venue-form *ngIf="displayForm && displayForms && isUserLoggued" [mesiVenue]="v">
+            </app-mesi-venue-form>
+        </div>
+
     </div>
 
-  </div>
+    <div *ngIf="!v.knownStatus">
+        <p>Nous n'avons pas d'information concernant cet endroit.</p>
+        <button *ngIf="!displayForm && displayForms" class="btn btn-secondary" (click)="formDisplay()">Renseignez-nous !</button>
+        <app-mesi-venue-form *ngIf="displayForms && displayForm && isUserLoggued" [mesiVenue]="v">
+        </app-mesi-venue-form>
+    </div>
 
-  <div *ngIf="!v.knownStatus">
-    <p>Nous n'avons pas d'information concernant cet endroit.</p>
-    <button *ngIf="!displayForm && displayForms" class="btn btn-secondary" (click)="formDisplay()">Renseignez-nous !</button>
-    <app-mesi-venue-form *ngIf="displayForms && displayForm" [mesiVenue]="v">
-    </app-mesi-venue-form>
-  </div>
+    <div *ngIf="displayForms && displayForm && !isUserLoggued">
+        <p>Connectez vous pour apporter des informations</p>
+        <app-login-page></app-login-page>
+    </div>
 
-  <div *ngIf="displayForms && displayForm && !isUserLoggued">
-    <p>Connectez vous pour apporter des informations</p>
-    <app-login-page></app-login-page>
-  </div>
-
-  <img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%" />
-  <a href="{{ venueFBShareLink }}">Partagez ce lieu sur Facebook !</a>
+    <img src="{{ v.yelpVenue.image_url }}" class="img-fluid img-thumbnail" width="95%" />
+    <a href="{{ venueFBShareLink }}">Partagez ce lieu sur Facebook !</a>
 
 </div>

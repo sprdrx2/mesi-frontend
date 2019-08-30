@@ -7,6 +7,8 @@ import { MesiCommentaire} from '../mesi-commentaire';
 
 
 
+
+
 @Component({
   selector: 'app-venue-page',
   templateUrl: './venue-page.component.html',
@@ -20,6 +22,7 @@ export class VenuePageComponent implements OnInit {
   isPostingComment = false;
   commentIsPosted = false;
   newComment:string;
+  isUserLoggued = false;
 
   constructor(private route: ActivatedRoute, private yelpService: YelpService, private venueMesiService: VenueMesiService, private router: Router) { }
 
@@ -27,7 +30,12 @@ export class VenuePageComponent implements OnInit {
     this.route.params.subscribe(
       params => {
         this.rechercheOne(params['yelp_id']);
-      }
+        this.venueMesiService.isUserLoggued().subscribe(
+          (uIsL: boolean) => {
+            if(uIsL) { this.isUserLoggued = true;  }
+            else  { this.isUserLoggued = false;  }
+          });
+      }    
     );
   }
 

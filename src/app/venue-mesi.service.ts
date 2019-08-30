@@ -16,7 +16,7 @@ import { MesiCommentaire } from './mesi-commentaire';
 })
 
 export class VenueMesiService {
-  private venueMesiApiAddress = 'http://bb-api.perdrix.xyz';
+  private venueMesiApiAddress = 'http://localhost:8000';
   private venueMesiApiCompareAddress   = this.venueMesiApiAddress + '/venues/compare';
   private venueMesiApiCreateAddress    = this.venueMesiApiAddress + '/venue/create';
   private venueMesiApiUpdateAddress    = this.venueMesiApiAddress + '/venue/update';
