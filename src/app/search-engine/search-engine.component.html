@@ -1,33 +1,11 @@
-<div class="jumbotron jumbotron-fluid" *ngIf="isComputing"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
+<div class="jumbotron jumbotron-fluid" *ngIf="isComputing" xmlns:padding-right="http://www.w3.org/1999/xhtml"
+     xmlns:padding-right="http://www.w3.org/1999/xhtml" xmlns:padding-right="http://www.w3.org/1999/xhtml"
+     xmlns:padding-right="http://www.w3.org/1999/xhtml"><img class="display-6" src="assets/computing.gif" alt="computing..." /></div>
 
-<form *ngIf="!isComputing && !zeroResults && displayBBFriendly" id="filters" class="d-none d-md-inline">
-    <input [(ngModel)]="filterEspacePoussetteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Espace poussette</label>
-    <input [(ngModel)]="filterEspaceJeuRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Espace jeu</label>
-    <input [(ngModel)]="filterMenuEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Menu enfant</label>
-    <input [(ngModel)]="filterTableLangerRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Table à langer</label>
-    <input [(ngModel)]="filterTableLangerMenRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Table à langer accessible aux hommes</label>
-    <input [(ngModel)]="filterChaiseHauteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>Chaise haute</label>
-    <input [(ngModel)]="filterWcEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
-    <label>WC enfants</label>
-    <br />
-    <button (click)="filtrer()">Filtrer</button>
-    <button *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
-</form>
 
-<div *ngIf="!isComputing && !zeroResults">
-    <button *ngIf="!displayBBNotFriendly" (click)="afficherMauvaisEleves()">Voir les endroits non compatibles avec bébé.</button>
-    <button *ngIf="!displayStatusUnknown" (click)="modeRecensement()">Aidez nous recenser les environs !</button>
-    <button *ngIf="!displayBBFriendly" (click)="retourResultats()">Retour au resultats.</button>
-</div>
 
 <p *ngIf="!isComputing && zeroResults">
-    Aucun résultats dans ces environs !<br /> Voici les lieux pour lequels nous n'avons pas d'information, aidez-nous completer nos informations !
+    Aucun résultat dans ces environs !<br /> Voici les lieux pour lesquels nous n'avons pas d'information, vous pouvez nous aider à les recenser ?
 </p>
 
 <p *ngIf="!isComputing && zeroResultsAfterFiltre">
@@ -37,6 +15,54 @@
 <app-venue-map *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus"   [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
     [displayUnknownStatus]="displayStatusUnknown">
 </app-venue-map>
+
+<form *ngIf="!isComputing && !zeroResults && displayBBFriendly" id="filters" class="d-none d-md-inline">
+  <span class="checkboxesFiltres">
+  <input [(ngModel)]="filterEspacePoussetteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+    <img class="iconeFiltreRecherche" src="/assets/strollerpark2.png"  alt="">
+  </span >
+  <span class="checkboxesFiltres">
+ <input [(ngModel)]="filterEspaceJeuRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+  <img class="iconeFiltreRecherche" src="/assets/toy.png" alt="">
+  </span>
+
+  <span class="checkboxesFiltres">
+<input [(ngModel)]="filterMenuEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+  <img class="iconeFiltreRecherche" src="/assets/meal2.PNG" alt="">
+  </span>
+
+  <span class="checkboxesFiltres">
+<input [(ngModel)]="filterTableLangerRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+  <img class="iconeFiltreRecherche" src="/assets/tableLangerFemme.png" alt="">
+  </span>
+  <span class="checkboxesFiltres">
+
+  </span>
+
+  <span class="checkboxesFiltres">
+<input [(ngModel)]="filterTableLangerMenRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+  <img class="iconeFiltreRecherche" src="/assets/tableLangerHomme.png" alt="">
+  </span>
+
+  <span class="checkboxesFiltres">
+         <input [(ngModel)]="filterChaiseHauteRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+  <img class="iconeFiltreRecherche" src="/assets/highchair.png" alt="">
+  </span>
+  <input [(ngModel)]="filterWcEnfantRequired" type="checkbox" [ngModelOptions]="{standalone: true}" />
+  <img class="iconeFiltreRecherche" src="/assets/wcEnfant.png" alt="">
+  <span class="checkboxesFiltres">
+
+  </span>
+
+  <button class="btn btn-secondary" (click)="filtrer()">Filtrer</button>
+  <button class="btn btn-secondary" *ngIf="filtersAreOn" (click)="viderFiltres()">Réinitialiser filtres</button>
+</form>
+
+<div class="boutonsFiltresSearchEngine"  *ngIf="!isComputing && !zeroResults">
+  <button class="btn btn-secondary" *ngIf="!displayBBNotFriendly" (click)="afficherMauvaisEleves()">Voir les endroits non compatibles avec bébé.</button>
+  <button class="btn btn-secondary"*ngIf="!displayStatusUnknown" (click)="modeRecensement()">Pour nous aider à recenser les environs</button>
+  <button class="btn btn-secondary"*ngIf="!displayBBFriendly" (click)="retourResultats()">Retour aux resultats.</button>
+</div>
 
 <app-venue-list *ngIf="!isComputing" [venuesBBFriendly]="mesiVenuesBBFriendlyFiltered" [venuesBBNotFriendly]="mesiVenuesBBNotFriendly" [venuesUnknownStatus]="mesiVenuesUnknownStatus" [displayBBFriendly]="displayBBFriendly" [displayBBNotFriendly]="displayBBNotFriendly"
     [displayUnknownStatus]="displayStatusUnknown">
