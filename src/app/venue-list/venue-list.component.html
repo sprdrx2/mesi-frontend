@@ -8,17 +8,17 @@
 
 <h4 *ngIf="displayBBFriendly">Venues BaBy-Friendly !</h4>
 <div *ngIf="displayBBFriendly" class="row">
-        <app-mesi-venue *ngFor="let v of venuesBBFriendly" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
+        <app-mesi-venue *ngFor="let v of venuesBBFriendly" class="col-sm-1 col-md-4" [v]="v" [displayForms]="false"></app-mesi-venue>
 </div>
 
 <h4 *ngIf="displayUnknownStatus">Venues inconnues au bataillons !</h4>
 <div *ngIf="displayUnknownStatus" class="row">
-  <app-mesi-venue *ngFor="let v of venuesUnknownStatus" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
+  <app-mesi-venue *ngFor="let v of venuesUnknownStatus" class="col-sm-1 col-md-4" [v]="v" [displayForms]="false"></app-mesi-venue>
 </div>
 
 <h4 *ngIf="displayBBNotFriendly">Venues Pas BaBy-Friendly !</h4>
 <div *ngIf="displayBBNotFriendly" class="row">
-        <app-mesi-venue *ngFor="let v of venuesBBNotFriendly" class="col-sm-1 col-md-4" [v]="v"></app-mesi-venue>
+        <app-mesi-venue *ngFor="let v of venuesBBNotFriendly" class="col-sm-1 col-md-4" [v]="v" [displayForms]="false"></app-mesi-venue>
 </div>
 
 

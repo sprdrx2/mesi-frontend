@@ -19,6 +19,7 @@ export class MesiVenueComponent implements OnInit {
   private displayLogin: boolean;
   private loginTested = false;
   venueFBShareLink: String;
+  @Input() displayForms: boolean;
 
   constructor(private venueMesiService: VenueMesiService, private router: Router) { }
 
