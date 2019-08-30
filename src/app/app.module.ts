@@ -22,6 +22,7 @@ import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { VenuePageComponent } from './venue-page/venue-page.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { MentionsLegalesComponent } from './mentions-legales/mentions-legales.component';
 
 
 const mesiRoutes: Routes = [
@@ -31,7 +32,8 @@ const mesiRoutes: Routes = [
   { path: 'search', component: SearchEngineComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'venue/:yelp_id', component: VenuePageComponent},
-  { path: 'signin', component: InscriptionComponent }
+  { path: 'signin', component: InscriptionComponent },
+  { path: 'about', component: MentionsLegalesComponent }
 ];
 
 
@@ -50,6 +52,7 @@ const mesiRoutes: Routes = [
     LoginPageComponent,
     VenuePageComponent,
     InscriptionComponent,
+    MentionsLegalesComponent,
   ],
   imports: [
   BrowserModule,
